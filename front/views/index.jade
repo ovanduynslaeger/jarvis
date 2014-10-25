@@ -61,7 +61,9 @@ block main
  
  script.
     function sendURL(url) {
-       alert(url);
+       //alert(url);
+       $.get(url,function(data,status) {
+       });
     }
    
     function toggleDialog(transition) {
