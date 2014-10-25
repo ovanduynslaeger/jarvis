@@ -1,0 +1,40 @@
+conn = new Mongo();
+db = conn.getDB("jarvis");
+db.categories.remove({});
+db.categories.insert(
+ {
+     code: 'SOCKET',
+     level: '1',
+     name: 'Lumières',
+     photo: '/images/SOCKET.svg',
+     maincolor: "Salmon",
+     secondcolor: "FireBrick"
+ });
+db.categories.insert(
+ {
+     code: 'SHUTTER',
+     level: '2',
+     name: 'Volets',
+     photo: '/images/SHUTTER.svg',
+     maincolor: "LightGreen",
+     secondcolor: "MediumSeaGreen"
+ });
+db.categories.insert(
+ {
+     code: 'AUDIO',
+     level: '3',
+     name: 'Audio',
+     photo: '/images/AUDIO.svg',
+     maincolor: "Plum",
+     secondcolor: "Purple"
+ });
+db.categories.insert(
+ {
+     code: 'VIDEO',
+     level: '4',
+     name: 'Vidéo',
+     photo: '/images/VIDEO.svg',
+     maincolor: "SandyBrown",
+     secondcolor: "DarkOrange"
+ });
+  

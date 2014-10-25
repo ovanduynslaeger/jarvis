@@ -1,0 +1,327 @@
+conn = new Mongo();
+db = conn.getDB("jarvis");
+db.scenarios.remove({});
+db.scenarios.insert(
+ {
+     name: 'Volets avants',
+     code: 'S-AV',
+     category: 'SHUTTER',
+     actions:  [ 
+     {
+       code: 'up',
+       name: 'Monter',
+       icon: 'expand-less',
+       comands: [ {
+          deviceCode: 'V-04',
+          controlCode: 'up',
+          sorting: 1
+       },
+       {
+          deviceCode: 'V-05',
+          controlCode: 'up',
+          sorting: 2
+       },
+       {
+          deviceCode: 'V-06',
+          controlCode: 'up',
+          sorting: 3
+       } ]
+     },
+     {
+       code: 'down',
+       name: 'Descendre',
+       icon: 'expand-more',
+       comands: [ {
+          deviceCode: 'V-04',
+          controlCode: 'down',
+          sorting: 1
+       },
+       {
+          deviceCode: 'V-05',
+          controlCode: 'down',
+          sorting: 2
+       },
+       {
+          deviceCode: 'V-06',
+          controlCode: 'down',
+          sorting: 3
+       } ]
+       }
+       ]
+ });
+db.scenarios.insert(
+ {
+     name: 'Volets arrières',
+     code: 'S-AR',
+     category: 'SHUTTER',
+     actions:  [ 
+     {
+       code: 'up',
+       name: 'Monter',
+       icon: 'expand-less',
+       comands: [ {
+          deviceCode: 'V-01',
+          controlCode: 'up',
+          sorting: 1
+       },
+       {
+          deviceCode: 'V-02',
+          controlCode: 'up',
+          sorting: 2
+       },
+       {
+          deviceCode: 'V-03',
+          controlCode: 'up',
+          sorting: 3
+       } ]
+     },
+     {
+       code: 'down',
+       name: 'Descendre',
+       icon: 'expand-more',
+       comands: [ {
+          deviceCode: 'V-01',
+          controlCode: 'down',
+          sorting: 1
+       },
+       {
+          deviceCode: 'V-02',
+          controlCode: 'down',
+          sorting: 2
+       },
+       {
+          deviceCode: 'V-03',
+          controlCode: 'down',
+          sorting: 3
+       } ]
+       }
+       ]
+ });
+ 
+db.scenarios.insert(
+ {
+     name: 'Tous les volets',
+     code: 'S-ALL',
+     category: 'SHUTTER',
+     actions:  [ 
+       {
+       code: 'up',
+       name: 'Monter',
+       icon: 'expand-less',
+       comands: [ {
+          deviceCode: 'V-01',
+          controlCode: 'up',
+          sorting: 1
+       },
+       {
+          deviceCode: 'V-02',
+          controlCode: 'up',
+          sorting: 1
+       },
+       {
+          deviceCode: 'V-03',
+          controlCode: 'up',
+          sorting: 1
+       },
+       {
+          deviceCode: 'V-04',
+          controlCode: 'up',
+          sorting: 1
+       },
+       {
+          deviceCode: 'V-05',
+          controlCode: 'up',
+          sorting: 2
+       },
+       {
+          deviceCode: 'V-06',
+          controlCode: 'up',
+          sorting: 3
+         } ]
+       },
+       {
+       code: 'down',
+       name: 'Descendre',
+       icon: 'expand-more',
+       comands: [ {
+          deviceCode: 'V-01',
+          controlCode: 'down',
+          sorting: 1
+       },
+       {
+          deviceCode: 'V-02',
+          controlCode: 'down',
+          sorting: 1
+       },
+       {
+          deviceCode: 'V-03',
+          controlCode: 'down',
+          sorting: 1
+       },
+       {
+          deviceCode: 'V-04',
+          controlCode: 'down',
+          sorting: 1
+       },
+       {
+          deviceCode: 'V-05',
+          controlCode: 'down',
+          sorting: 2
+       },
+       {
+          deviceCode: 'V-06',
+          controlCode: 'down',
+          sorting: 3
+       } ]
+       }
+       ]
+ });
+
+db.scenarios.insert(
+ {
+     name: 'Home Cinéma',
+     code: 'HTPC',
+     category: 'VIDEO',
+     actions:  [ 
+       {
+       code: 'on',
+       name: 'Allumer',
+       icon: 'settings-power',
+       comands: [ 
+       {
+          deviceCode: 'P-03',
+          controlCode: 'on',
+          sorting: 1
+       },
+       {
+          deviceCode: 'V-01',
+          controlCode: 'down',
+          sorting: 1
+       },
+       {
+          deviceCode: 'V-02',
+          controlCode: 'down',
+          sorting: 1
+       },
+       {
+          deviceCode: 'V-03',
+          controlCode: 'down',
+          sorting: 1
+       },
+       {
+          deviceCode: 'V-04',
+          controlCode: 'down',
+          sorting: 1
+       },
+       {
+          deviceCode: 'V-05',
+          controlCode: 'down',
+          sorting: 2
+       },
+       {
+          deviceCode: 'V-06',
+          controlCode: 'down',
+          sorting: 3
+       },
+       {
+          deviceCode: 'V-07',
+          controlCode: 'down',
+          sorting: 1
+       },
+       {
+          deviceCode: 'A-01',
+          controlCode: 'on',
+          sorting: 1
+       },
+       {
+          deviceCode: 'P-07',
+          controlCode: 'on',
+          sorting: 1
+       },
+       {
+          deviceCode: 'HTPC-01',
+          controlCode: 'on',
+          sorting: 1
+       },
+       {
+          deviceCode: 'A-01',
+          controlCode: 'modemovie',
+          sorting: 1
+       },
+       {
+          deviceCode: 'P-03',
+          controlCode: 'off',
+          sorting: 1
+         }
+         ]
+       },
+       {
+       code: 'off',
+       name: 'Eteindre',
+       icon: 'radio-button-off',
+       comands: [ 
+         {
+            deviceCode: 'V-07',
+            controlCode: 'up',
+            sorting: 1
+         },
+         {
+            deviceCode: 'HTPC-01',
+            controlCode: 'off',
+            sorting: 1
+         },
+         {
+            deviceCode: 'A-01',
+            controlCode: 'off',
+            sorting: 1
+       } ]
+       }
+       ]
+ });
+db.scenarios.insert(
+ {
+     name: 'Musique',
+     code: 'HTPC-AUDIO',
+     category: 'AUDIO',
+     actions:  [ 
+       {
+       code: 'on',
+       name: 'Allumer',
+       icon: 'settings-power',
+       comands: [ 
+       {
+          deviceCode: 'A-01',
+          controlCode: 'on',
+          sorting: 1
+       },
+       {
+          deviceCode: 'HTPC-01',
+          controlCode: 'on',
+          sorting: 1
+       },
+       {
+          deviceCode: 'A-01',
+          controlCode: 'modemovie',
+          sorting: 1
+       }
+       ]
+       },
+       {
+       code: 'off',
+       name: 'Eteindre',
+       icon: 'radio-button-off',
+       comands: [ 
+         {
+            deviceCode: 'HTPC-01',
+            controlCode: 'off',
+            sorting: 1
+         },
+         {
+            deviceCode: 'A-01',
+            controlCode: 'off',
+            sorting: 1
+       } ]
+       }
+       ]
+ });
+

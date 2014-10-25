@@ -1,0 +1,44 @@
+extends layout
+block main
+ template(is="auto-binding")
+  core-toolbar(class="toolbar")
+   core-icon-button(icon="{{$.pages.selected != 0 ? 'arrow-back' : 'menu'}}",on-tap="{{back}}")
+   label Jarvis
+  core-animated-pages(id="pages",flex selected="0",on-core-animated-pages-transition-end="{{transitionend}}",transitions="cross-fade-all hero-transition")
+   section(vertical,layout)
+    div(id="container",flex,horizontal,wrap,layout,hero-p)
+     template(repeat="{{category in items}}")
+      div(class="tile",style="background-color: {{category.maincolor}};",vertical,center-justified,layout,hero-id="item-{{category.level}}",hero?="{{$.pages.selected === category.level +1 || lastSelected === category.level + 1}",on-tap="{{selectView}}")
+       img(src="{{category.photo}}")
+   template(repeat="{{category in items}}")
+    section(vertical,layout)
+     div(style="background-color: {{category.maincolor}};",class="view",flex,vertical,center,center-justified,layout,hero-id="item-{{category.level}}",hero?="{{$.pages.selected === category.level + 1 || $.pages.selected === 0}}")
+      span {{category.name}}
+ 
+ script.
+    addEventListener('template-bound', function(e) {
+     var scope = e.target;
+     var items = [];
+     
+      console.log(!{categories});
+      for (var cat in !{categories}) {
+         items.push(!{categories}[cat]);
+      }
+      scope.items = items;
+
+      scope.selectView = function(e) {
+        var cat = e.target.templateInstance.model.category;
+        this.$.pages.selected = cat.level;
+      }
+
+      scope.back = function() {
+        this.lastSelected = this.$.pages.selected;
+        this.$.pages.selected = 0;
+      }
+
+      scope.transitionend = function() {
+        if (this.lastSelected) {
+          this.lastSelected = null;
+        }
+      }
+    })

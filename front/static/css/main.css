@@ -1,0 +1,86 @@
+body {
+    background-color: #E5E5E5;
+    font-family: 'RobotoDraft', sans-serif;
+    color: black;
+}
+
+.toolbar {
+    background-color: dodgerblue;
+    color: white;
+}
+
+.container {
+    margin-top:1%;
+    padding-top: 10px;
+}
+
+.tile {
+    position: relative;
+    font-size: 50px;
+    background-color: Salmon;
+    cursor: default;
+    width: 48.5%;
+    height: 220px;
+    margin-left: 1%;
+    margin-top: 1%;
+}
+
+.view {
+    overflow: auto;
+    padding-top: 1em;
+}
+
+.slider paper-slider::shadow #sliderKnobInner,
+
+.slider paper-slider::shadow #sliderKnobInner::before,
+
+.slider paper-slider::shadow #sliderBar::shadow #activeProgress {
+  background-color: DimGray;
+}
+    
+#ratingsLabel {
+  padding-left: 5px;
+  color: DimGray;
+  font-size: 1.5em;
+}
+
+
+paper-slider {
+  width: 250px;
+}
+
+section .slider {
+  vertical-align: middle;
+  padding: 20px 0;
+  display: inline-flex;
+}
+
+.list.core-selected {
+    display: block;
+}
+
+core-overlay-layer {
+  background-color: #E5E5E5;
+  width: 80%;
+  alignment-baseline: central;
+  left: 10%;
+  font-size: 0.7em;
+  margin:0;
+  padding:0;
+}
+
+#main {
+  padding:5px;
+}
+
+core-item {
+  width: 300px;
+}
+
+core-item.small {
+      font-size: 9px;
+}
+
+core-icon {
+  margin: 0 4px 0 4px  
+}

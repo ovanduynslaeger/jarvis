@@ -1,0 +1,112 @@
+extends layout
+block main
+ template(is="auto-binding")
+  core-header-panel(flex,mode="waterfall")
+   core-toolbar(class="toolbar")
+    core-icon-button(icon="{{$.pages.selected != 0 ? 'arrow-back' : 'menu'}}",on-tap="{{back}}")
+    label(flex) Jarvis
+    core-icon-button(icon="help",onclick="toggleDialog('paper-dialog-transition-center')")
+   core-animated-pages(id="pages",flex selected="0",on-core-animated-pages-transition-end="{{transitionend}}",transitions="cross-fade-all hero-transition")
+    section(vertical,layout)
+     div(id="container",flex,horizontal,wrap,layout,hero-p)
+      template(repeat="{{category in items}}")
+       div(class="tile",style="background-color: {{category.secondcolor}};",vertical,center-justified,layout,hero-id="item-{{category.level}}",hero?="{{$.pages.selected === category.level +1 || lastSelected === category.level + 1}",on-tap="{{selectView}}")
+        img(src="{{category.photo}}")
+    template(repeat="{{category in items}}")
+     section(vertical,layout,style="display: block")
+      div(style="background-color: {{category.maincolor}};",class="view",flex,horizontal,wrap,center-justified,layout,hero-id="item-{{category.level}}",hero?="{{$.pages.selected === category.level + 1 || $.pages.selected === 0}}")
+       template(repeat="{{sce in scenarios}}")
+        template(if="{{sce.category === category.code}}")
+         domo-device(id="{{sce.code}}",bgc="{{category.secondcolor}}")
+          img(src="../images/scenario.svg",width="48px",height="48px")
+          actions
+           core-collapse(id="collapse{{sce.code}}")
+            template(repeat="{{action in sce.actions}}")
+             //core-icon-button(icon="info")
+             paper-fab(icon="{{action.icon}}",onclick="sendURL('/api/scenario/{{sce.code}}/command/{{action.code}}')")
+          label {{sce.name}}
+       template(repeat="{{device in devices}}")
+        template(if="{{device.category === category.code}}")
+         domo-device(id="{{device.code}}",bgc="{{category.secondcolor}}")
+          img(src="{{device.photo}}",width="48px",height="48px")
+          actions
+           core-collapse(id="collapse{{device.code}}")
+            template(repeat="{{control in device.controls}}")
+             template(if="{{control.style === 'separator'}}")
+              div(layout,horizontal,center-justified)
+             template(if="{{control.style === 'button'}}")
+              template(if="{{control.url === '' }}")
+               paper-fab(icon="{{control.icon}}",onclick="sendURL('/api/device/{{device.code}}/command/{{control.code}}/iterate/1')")
+              template(if="{{control.url !== '' }}")
+               paper-fab(icon="{{control.icon}}",onclick="sendURL('{{control.url}}')")
+             template(if="{{control.style === 'slide'}}")
+              paper-fab(icon="av:volume-up",onclick="sendURL('/api/device/{{device.code}}/command/vol/iterate/'+document.getElementById('ratings').value)")
+              section(class="slider")
+               paper-slider(id="ratings",pin,snaps,min="-10",max="10",step="2",value="0")
+               span(id="ratingsLabel")
+          label {{device.name}}
+ paper-dialog(id="helpdialog",heading="Aide",transition="paper-dialog-transition-center",layered="true")
+  div(layout,vertical,wrap)
+   core-item(icon="menu",label="Menu")
+   core-item(icon="settings-power",label="Allumer")
+   core-item(icon="radio-button-off",label="Eteindre")
+   core-item(icon="hardware:tv",label="Son PS3 vers ampli")
+   core-item(icon="image:panorama-horizontal",label="Son télévision vers ampli")
+   core-item(icon="reply",label="Retour")
+   core-item(icon="done",label="Valider")
+   core-item(icon="communication:message",label="Activer les sous-titres")
+   core-item(icon="communication:messenger",label="Désactiver les sous-titres")
+  core-icon-button(icon="close",affirmative) 
+
+ 
+ script.
+    function sendURL(url) {
+       alert(url);
+    }
+   
+    function toggleDialog(transition) {
+      var dialog = document.querySelector('paper-dialog[transition=' + transition + ']');
+      dialog.toggle();
+    }
+
+ script.
+    addEventListener('template-bound', function(e) {
+     var scope = e.target;
+     var items = [];
+     var devices = [];
+     var scenarios = [];
+
+     //var ratings = document.querySelector('#ratings');
+
+      for (var cat in !{categories}) {
+         items.push(!{categories}[cat]);
+      }
+      scope.items = items;
+      
+      for (var dev in !{devices}) {
+         devices.push(!{devices}[dev]);
+      }
+      scope.devices = devices;
+
+      for (var sce in !{scenarios}) {
+         scenarios.push(!{scenarios}[sce]);
+      }
+      scope.scenarios = scenarios;
+      console.log(scenarios);
+
+      scope.selectView = function(e) {
+        var cat = e.target.templateInstance.model.category;
+        this.$.pages.selected = cat.level;
+      }
+
+      scope.back = function() {
+        this.lastSelected = this.$.pages.selected;
+        this.$.pages.selected = 0;
+      }
+
+      scope.transitionend = function() {
+        if (this.lastSelected) {
+          this.lastSelected = null;
+        }
+      }
+    })

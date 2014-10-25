@@ -1,0 +1,50 @@
+conn = new Mongo();
+db = conn.getDB("jarvis");
+db.system.js.remove({});
+db.system.js.save(
+   { _id: "getScenarios",
+     value : function() {
+                var scenarios = db.scenarios.find();
+                for (var i = 0; i < scenarios.length(); i++) {
+                    for (var a = 0; a < scenarios[i].actions.length; a++) {
+                        for (var j = 0; j < scenarios[i].actions[a].comands.length; j++) {
+                            device = db.devices.findOne({code :scenarios[i].actions[a].comands[j].deviceCode});
+                            for (var c = 0; c < device.controls.length; c++) {
+                               if (scenarios[i].actions[a].comands[j].controlCode === device.controls[c].code) {
+                                  device = db.devices.findOne({code :scenarios[i].actions[a].comands[j].deviceCode});
+                                  scenarios[i].actions[a].comands[j].control = device.controls[c];
+                               } 
+                            }
+                            device.controls = [];
+                            scenarios[i].actions[a].comands[j].device = device;
+                        } 
+                    } 
+                }
+                return scenarios._arr;
+            }
+   }
+)
+
+
+db.system.js.save(
+   { _id: "getScenario",
+     value : function(code) {
+                var scenario = db.scenarios.findOne({code: code});
+                for (var a = 0; a < scenario.actions.length; a++) {
+                    for (var j = 0; j < scenario.actions[a].comands.length; j++) {
+                        device = db.devices.findOne({code :scenario.actions[a].comands[j].deviceCode});
+                        for (var c = 0; c < device.controls.length; c++) {
+                           if (scenario.actions[a].comands[j].controlCode === device.controls[c].code) {
+                              device = db.devices.findOne({code :scenario.actions[a].comands[j].deviceCode});
+                              scenario.actions[a].comands[j].control = device.controls[c];
+                           } 
+                        }
+                        device.controls = [];
+                        scenario.actions[a].comands[j].device = device;
+                    } 
+                } 
+                //return scenario._arr;
+                return scenario;
+            }
+   }
+)
