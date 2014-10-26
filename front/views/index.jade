@@ -26,11 +26,12 @@ block main
              paper-fab(icon="{{action.icon}}",onclick="sendURL('/api/scenario/{{sce.code}}/command/{{action.code}}')")
           label {{sce.name}}
        template(repeat="{{device in devices}}")
-        template(if="{{device.category === category.code}}")
-         domo-device(id="{{device.code}}",bgc="{{category.secondcolor}}")
+        //template(if="{{device.category === category.code}}")
+        template(if="{{contain(category.code,device.category)}}")
+         domo-device(id="{{category.code}}{{device.code}}",bgc="{{category.secondcolor}}")
           img(src="{{device.photo}}",width="48px",height="48px")
           actions
-           core-collapse(id="collapse{{device.code}}")
+           core-collapse(id="collapse{{category.code}}{{device.code}}")
             template(repeat="{{control in device.controls}}")
              template(if="{{control.style === 'separator'}}")
               div(layout,horizontal,center-justified)
@@ -61,7 +62,7 @@ block main
  
  script.
     function sendURL(url) {
-       //alert(url);
+       alert(url);
        $.get(url,function(data,status) {
        });
     }
@@ -96,6 +97,11 @@ block main
       scope.scenarios = scenarios;
       console.log(scenarios);
 
+      scope.contain = function(value,array) {
+         var b = $.inArray(value, array);
+         return b != -1;
+      }
+      
       scope.selectView = function(e) {
         var cat = e.target.templateInstance.model.category;
         this.$.pages.selected = cat.level;

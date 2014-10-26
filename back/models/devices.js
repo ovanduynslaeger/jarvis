@@ -10,7 +10,7 @@ var DeviceSchema = new mongoose.Schema({
     status: Number,
     publicId: String,
     photo: String,
-    category: String,
+    category: [String],
     sorting: Number,
     controls: [ {
         name: String,

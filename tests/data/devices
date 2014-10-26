@@ -9,7 +9,7 @@ db.devices.insert(
      protocol: 'rf433',
      publicId: 'B',
      photo: '../images/ampoule.svg',
-     category: 'SOCKET',
+     category: [ 'SOCKET' ],
      sorting: 1,
      controls: [ {
         code: 'on',
@@ -28,6 +28,7 @@ db.devices.insert(
         status: 1, style: 'button'       
      } ]
  });
+
 db.devices.insert(
  {
      code: 'P-02',
@@ -36,7 +37,7 @@ db.devices.insert(
      protocol: 'dio',
      publicId: '3',
      photo: '../images/SOCKET.svg',
-     category: 'SOCKET',
+     category: [ 'SOCKET' ],
      sorting: 4,
      controls: [ {
         code: 'on',
@@ -63,7 +64,7 @@ db.devices.insert(
      protocol: 'dio',
      publicId: '4',
      photo: '../images/ampoule.svg',
-     category: 'SOCKET',
+     category: [ 'SOCKET','VIDEO' ],
      sorting: 2,
      controls: [ {
         code: 'on',
@@ -90,7 +91,7 @@ db.devices.insert(
      protocol: 'rf433',
      publicId: 'C',
      photo: '../images/ampoule.svg',
-     category: 'SOCKET',
+     category: [ 'SOCKET' ],
      sorting: 3,
      controls: [ {
         code: 'on',
@@ -117,7 +118,7 @@ db.devices.insert(
      protocol: 'dio',
      publicId: '1',
      photo: '../images/ampoule.svg',
-     category: 'SOCKET',
+     category: [ 'SOCKET' ],
      sorting: 5,
      controls: [ {
         code: 'on',
@@ -144,7 +145,7 @@ db.devices.insert(
      protocol: 'dio',
      publicId: '2',
      photo: '../images/ampoule.svg',
-     category: 'SOCKET',
+     category: [ 'SOCKET' ],
      sorting: 6,
      controls: [ {
         code: 'on',
@@ -171,7 +172,7 @@ db.devices.insert(
      protocol: 'dio',
      publicId: '9',
      photo: '../images/SHUTTER.svg',
-     category: 'SHUTTER',
+     category: [ 'SHUTTER' ],
      sorting: 7,
      controls: [ {
         name: 'Monter',
@@ -198,7 +199,7 @@ db.devices.insert(
      protocol: 'dio',
      publicId: '8',
      photo: '../images/SHUTTER.svg',
-     category: 'SHUTTER',
+     category: [ 'SHUTTER' ],
      sorting: 8,
      controls: [ {
         name: 'Monter',
@@ -225,7 +226,7 @@ db.devices.insert(
      protocol: 'dio',
      publicId: '7',
      photo: '../images/SHUTTER.svg',
-     category: 'SHUTTER',
+     category: [ 'SHUTTER' ],
      sorting: 9,
      controls: [ {
         name: 'Monter',
@@ -252,7 +253,7 @@ db.devices.insert(
      protocol: 'dio',
      publicId: '6',
      photo: '../images/SHUTTER.svg',
-     category: 'SHUTTER',
+     category: [ 'SHUTTER' ],
      sorting: 10,
      controls: [ {
         name: 'Monter',
@@ -279,7 +280,7 @@ db.devices.insert(
      protocol: 'dio',
      publicId: '5',
      photo: '../images/SHUTTER.svg',
-     category: 'SHUTTER',
+     category: [ 'SHUTTER' ],
      sorting: 11,
      controls: [ {
         name: 'Monter',
@@ -306,7 +307,7 @@ db.devices.insert(
      protocol: 'dio',
      publicId: '0',
      photo: '../images/SHUTTER.svg',
-     category: 'SHUTTER',
+     category: [ 'SHUTTER' ],
      sorting: 12,
      controls: [ {
         name: 'Monter',
@@ -333,7 +334,7 @@ db.devices.insert(
      protocol: 'dio',
      publicId: '10',
      photo: '../images/SHUTTER.svg',
-     category: 'VIDEO',
+     category: [ 'VIDEO' ],
      sorting: 25,
      controls: [ {
         name: 'Monter',
@@ -362,7 +363,7 @@ db.devices.insert(
      protocol: 'ir',
      publicId: 'Yamaha_RAV302',
      photo: '../images/AUDIO.svg',
-     category: 'VIDEO',
+     category: [ 'AUDIO','VIDEO' ],
      sorting: 21,
      controls: [ {
         name: 'Allumer',
@@ -431,14 +432,14 @@ db.devices.insert(
      name: 'Lecteur Vidéo',
      type: 'HTPC',
      protocol: '',
-     publicId: 'http://192.168.0.16:9080/',
+     publicId: 'http://zotac:9080/',
      photo: '../images/VIDEO.svg',
-     category: 'VIDEO',
+     category: [ 'VIDEO' ],
      sorting: 21,
      controls: [ {
         name: 'Allumer',
         code: 'on',
-        url: 'http://192.168.0.16:8080/sarah/launch?key=xbmc',
+        url: 'http://zotac:8080/sarah/launch?key=xbmc',
         icon: 'settings-power',
         isStatefull: true,
         status: 1, 
@@ -447,7 +448,7 @@ db.devices.insert(
      {
         name: 'Eteindre',
         code: 'off',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Application.Quit%22}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Application.Quit%22}',
         icon: 'radio-button-off',
         isStatefull: false,
         status: 0, 
@@ -456,7 +457,7 @@ db.devices.insert(
      {
         name: 'Back',
         code: 'back',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Back%22}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Back%22}',
         icon: 'reply',
         isStatefull: false,
         status: 0,
@@ -465,7 +466,7 @@ db.devices.insert(
      {
         name: 'Menu',
         code: 'menu',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ContextMenu%22}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ContextMenu%22}',
         icon: 'menu',
         isStatefull: false,
         status: 0, 
@@ -474,7 +475,7 @@ db.devices.insert(
      {
         name: 'Ok',
         code: 'ok',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Select%22}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Select%22}',
         icon: 'done',
         isStatefull: false,
         status: 0, 
@@ -492,7 +493,7 @@ db.devices.insert(
      {
         name: 'Activer les sous-titres',
         code: 'subtitleon',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Player.SetSubtitle%22,%22params%22:%20{%22playerid%22:%201,%22subtitle%22:%20%22on%22}}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Player.SetSubtitle%22,%22params%22:%20{%22playerid%22:%201,%22subtitle%22:%20%22on%22}}',
         icon: 'communication:message',
         isStatefull: false,
         status: 0, 
@@ -501,7 +502,7 @@ db.devices.insert(
      {
         name: 'Désactiver les sous-titres',
         code: 'subtitleon',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Player.SetSubtitle%22,%22params%22:%20{%22playerid%22:%201,%22subtitle%22:%20%22off%22}}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Player.SetSubtitle%22,%22params%22:%20{%22playerid%22:%201,%22subtitle%22:%20%22off%22}}',
         icon: 'communication:messenger',
         isStatefull: false,
         status: 0, 
@@ -510,7 +511,7 @@ db.devices.insert(
      {
         name: 'Information',
         code: 'info',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Info%22}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Info%22}',
         icon: 'info-outline',
         isStatefull: false,
         status: 0, 
@@ -528,7 +529,7 @@ db.devices.insert(
      {
         name: 'Mute',
         code: 'info',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ExecuteAction%22,%22params%22:%20{%22action%22:%20%22mute%22}}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ExecuteAction%22,%22params%22:%20{%22action%22:%20%22mute%22}}',
         icon: 'av:volume-off',
         isStatefull: false,
         status: 0, 
@@ -537,7 +538,7 @@ db.devices.insert(
      {
         name: 'VolumeDown',
         code: 'voldown',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ExecuteAction%22,%22params%22:%20{%22action%22:%20%22volumedown%22}}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ExecuteAction%22,%22params%22:%20{%22action%22:%20%22volumedown%22}}',
         icon: 'av:volume-down',
         isStatefull: false,
         status: 0, 
@@ -546,7 +547,7 @@ db.devices.insert(
      {
         name: 'VolumeUp',
         code: 'volup',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ExecuteAction%22,%22params%22:%20{%22action%22:%20%22volumeup%22}}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ExecuteAction%22,%22params%22:%20{%22action%22:%20%22volumeup%22}}',
         icon: 'av:volume-up',
         isStatefull: false,
         status: 0, 
@@ -564,7 +565,7 @@ db.devices.insert(
      {
         name: 'FastBack',
         code: 'fb',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ExecuteAction%22,%22params%22:%20{%22action%22:%20%22bigstepback%22}}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ExecuteAction%22,%22params%22:%20{%22action%22:%20%22bigstepback%22}}',
         icon: 'av:skip-previous',
         isStatefull: false,
         status: 0, 
@@ -573,7 +574,7 @@ db.devices.insert(
      {
         name: 'Back',
         code: 'b',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ExecuteAction%22,%22params%22:%20{%22action%22:%20%22stepback%22}}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ExecuteAction%22,%22params%22:%20{%22action%22:%20%22stepback%22}}',
         icon: 'av:fast-rewind',
         isStatefull: false,
         status: 0, 
@@ -582,7 +583,7 @@ db.devices.insert(
      {
         name: 'Forward',
         code: 'f',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ExecuteAction%22,%22params%22:%20{%22action%22:%20%22stepforward%22}}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ExecuteAction%22,%22params%22:%20{%22action%22:%20%22stepforward%22}}',
         icon: 'av:fast-forward',
         isStatefull: false,
         status: 0, 
@@ -591,7 +592,7 @@ db.devices.insert(
      {
         name: 'Fast Forward',
         code: 'ff',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ExecuteAction%22,%22params%22:%20{%22action%22:%20%22bigstepforward%22}}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ExecuteAction%22,%22params%22:%20{%22action%22:%20%22bigstepforward%22}}',
         icon: 'av:skip-next',
         isStatefull: false,
         status: 0, 
@@ -609,7 +610,7 @@ db.devices.insert(
      {
         name: 'Play',
         code: 'play',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ExecuteAction%22,%22params%22:%20{%22action%22:%20%22play%22}}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ExecuteAction%22,%22params%22:%20{%22action%22:%20%22play%22}}',
         icon: 'av:play-arrow',
         isStatefull: false,
         status: 0, 
@@ -618,7 +619,7 @@ db.devices.insert(
      {
         name: 'Pause',
         code: 'pause',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Player.PlayPause%22%20,%20%22params%22:%20{%22playerid%22:%201}}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Player.PlayPause%22%20,%20%22params%22:%20{%22playerid%22:%201}}',
         icon: 'av:pause',
         isStatefull: false,
         status: 0, 
@@ -627,7 +628,7 @@ db.devices.insert(
      {
         name: 'Stop',
         code: 'stop',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Player.Stop%22%20,%20%22params%22:%20{%22playerid%22:%201}}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Player.Stop%22%20,%20%22params%22:%20{%22playerid%22:%201}}',
         icon: 'av:stop',
         isStatefull: false,
         status: 0, 
@@ -645,7 +646,7 @@ db.devices.insert(
      {
         name: 'Haut',
         code: 'up',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Up%22}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Up%22}',
         icon: 'expand-less',
         isStatefull: false,
         status: 0, 
@@ -654,7 +655,7 @@ db.devices.insert(
      {
         name: 'Bas',
         code: 'down',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Down%22}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Down%22}',
         icon: 'expand-more',
         isStatefull: false,
         status: 0, 
@@ -663,7 +664,7 @@ db.devices.insert(
      {
         name: 'Gauche',
         code: 'left',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Left%22}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Left%22}',
         icon: 'chevron-left',
         isStatefull: false,
         status: 0, 
@@ -672,7 +673,7 @@ db.devices.insert(
      {
         name: 'Droite',
         code: 'right',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Right%22}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Right%22}',
         icon: 'chevron-right',
         isStatefull: false,
         status: 0, 
@@ -687,7 +688,7 @@ db.devices.insert(
      type: 'BOX',
      protocol: '',
      photo: '../images/VIDEO.svg',
-     category: 'VIDEO',
+     category: [ 'VIDEO' ],
      sorting: 23,
      controls: [ {
         name: 'Allumer',
@@ -715,7 +716,7 @@ db.devices.insert(
      protocol: 'rf433',
      publicId: 'A',
      photo: '../images/SOCKET.svg',
-     category: 'VIDEO',
+     category: [ 'VIDEO' ],
      sorting: 24,
      controls: [ {
         code: 'on',
@@ -740,14 +741,14 @@ db.devices.insert(
      name: 'Lecteur Audio',
      type: 'HTPC',
      protocol: '',
-     publicId: 'http://192.168.0.16:9080/',
+     publicId: 'http://zotac:9080/',
      photo: '../images/music.svg',
-     category: 'AUDIO',
+     category: [ 'AUDIO' ],
      sorting: 25,
      controls: [ {
         name: 'Allumer',
         code: 'on',
-        url: 'http://192.168.0.16:8080/sarah/launch?key=xbmc',
+        url: 'http://zotac:8080/sarah/launch?key=xbmc',
         icon: 'settings-power',
         isStatefull: true,
         status: 1, 
@@ -756,7 +757,7 @@ db.devices.insert(
      {
         name: 'Eteindre',
         code: 'off',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Application.Quit%22}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Application.Quit%22}',
         icon: 'radio-button-off',
         isStatefull: false,
         status: 0, 
@@ -774,7 +775,7 @@ db.devices.insert(
      {
         name: 'Back',
         code: 'back',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Back%22}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Back%22}',
         icon: 'reply',
         isStatefull: false,
         status: 0,
@@ -783,7 +784,7 @@ db.devices.insert(
      {
         name: 'Menu',
         code: 'menu',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ContextMenu%22}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ContextMenu%22}',
         icon: 'menu',
         isStatefull: false,
         status: 0, 
@@ -792,7 +793,7 @@ db.devices.insert(
      {
         name: 'Ok',
         code: 'ok',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Select%22}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Select%22}',
         icon: 'done',
         isStatefull: false,
         status: 0, 
@@ -801,7 +802,7 @@ db.devices.insert(
      {
         name: 'Information',
         code: 'info',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Info%22}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Info%22}',
         icon: 'info-outline',
         isStatefull: false,
         status: 0, 
@@ -819,7 +820,7 @@ db.devices.insert(
      {
         name: 'Mute',
         code: 'info',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ExecuteAction%22,%22params%22:%20{%22action%22:%20%22mute%22}}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ExecuteAction%22,%22params%22:%20{%22action%22:%20%22mute%22}}',
         icon: 'av:volume-off',
         isStatefull: false,
         status: 0, 
@@ -828,7 +829,7 @@ db.devices.insert(
      {
         name: 'VolumeDown',
         code: 'voldown',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ExecuteAction%22,%22params%22:%20{%22action%22:%20%22volumedown%22}}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ExecuteAction%22,%22params%22:%20{%22action%22:%20%22volumedown%22}}',
         icon: 'av:volume-down',
         isStatefull: false,
         status: 0, 
@@ -837,7 +838,7 @@ db.devices.insert(
      {
         name: 'VolumeUp',
         code: 'volup',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ExecuteAction%22,%22params%22:%20{%22action%22:%20%22volumeup%22}}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ExecuteAction%22,%22params%22:%20{%22action%22:%20%22volumeup%22}}',
         icon: 'av:volume-up',
         isStatefull: false,
         status: 0, 
@@ -855,7 +856,7 @@ db.devices.insert(
      {
         name: 'Back',
         code: 'b',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Player.GoTo%22,%22params%22:%20{%22playerid%22:%20%220%22,%22to%22:%22previous%22}}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Player.GoTo%22,%22params%22:%20{%22playerid%22:%20%220%22,%22to%22:%22previous%22}}',
         icon: 'av:fast-rewind',
         isStatefull: false,
         status: 0, 
@@ -864,7 +865,7 @@ db.devices.insert(
      {
         name: 'Play',
         code: 'play',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Player.PlayPause%22%20,%20%22params%22:%20{%22playerid%22:%200}}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Player.PlayPause%22%20,%20%22params%22:%20{%22playerid%22:%200}}',
                 icon: 'av:play-arrow',
         isStatefull: false,
         status: 0, 
@@ -873,7 +874,7 @@ db.devices.insert(
      {
         name: 'Pause',
         code: 'pause',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Player.PlayPause%22%20,%20%22params%22:%20{%22playerid%22:%200}}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Player.PlayPause%22%20,%20%22params%22:%20{%22playerid%22:%200}}',
         icon: 'av:pause',
         isStatefull: false,
         status: 0, 
@@ -882,7 +883,7 @@ db.devices.insert(
      {
         name: 'Stop',
         code: 'stop',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Player.Stop%22%20,%20%22params%22:%20{%22playerid%22:%200}}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Player.Stop%22%20,%20%22params%22:%20{%22playerid%22:%200}}',
         icon: 'av:stop',
         isStatefull: false,
         status: 0, 
@@ -891,7 +892,7 @@ db.devices.insert(
      {
         name: 'Forward',
         code: 'f',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Player.GoTo%22,%22params%22:%20{%22playerid%22:%20%220%22,%22to%22:%22next%22}}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Player.GoTo%22,%22params%22:%20{%22playerid%22:%20%220%22,%22to%22:%22next%22}}',
         icon: 'av:fast-forward',
         isStatefull: false,
         status: 0, 
@@ -909,7 +910,7 @@ db.devices.insert(
      {
         name: 'Haut',
         code: 'up',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Up%22}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Up%22}',
         icon: 'expand-less',
         isStatefull: false,
         status: 0, 
@@ -918,7 +919,7 @@ db.devices.insert(
      {
         name: 'Bas',
         code: 'down',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Down%22}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Down%22}',
         icon: 'expand-more',
         isStatefull: false,
         status: 0, 
@@ -927,7 +928,7 @@ db.devices.insert(
      {
         name: 'Gauche',
         code: 'left',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Left%22}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Left%22}',
         icon: 'chevron-left',
         isStatefull: false,
         status: 0, 
@@ -936,7 +937,7 @@ db.devices.insert(
      {
         name: 'Droite',
         code: 'right',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Right%22}',
+        url: 'http://zotac:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Right%22}',
         icon: 'chevron-right',
         isStatefull: false,
         status: 0, 
