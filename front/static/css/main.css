@@ -17,17 +17,17 @@ body {
 .tile {
     position: relative;
     font-size: 50px;
-    background-color: Salmon;
     cursor: default;
     width: 48.5%;
-    height: 220px;
     margin-left: 1%;
     margin-top: 1%;
+    height: 42.5vh;
 }
 
 .view {
     overflow: auto;
-    padding-top: 1em;
+    padding-top: 3px;
+    height: 87vh;
 }
 
 .slider paper-slider::shadow #sliderKnobInner,
