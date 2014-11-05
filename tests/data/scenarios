@@ -324,4 +324,84 @@ db.scenarios.insert(
        }
        ]
  });
-
+db.scenarios.insert(
+ {
+     name: 'PS3',
+     code: 'PS3',
+     category: 'VIDEO',
+     actions:  [ 
+       {
+       code: 'on',
+       name: 'Allumer',
+       icon: 'settings-power',
+       comands: [ 
+       {
+          deviceCode: 'V-03',
+          controlCode: 'down',
+          sorting: 1
+       },
+       {
+          deviceCode: 'V-04',
+          controlCode: 'down',
+          sorting: 1
+       },
+       {
+          deviceCode: 'V-05',
+          controlCode: 'down',
+          sorting: 2
+       },
+       {
+          deviceCode: 'V-07',
+          controlCode: 'down',
+          sorting: 1
+       },
+       {
+          deviceCode: 'A-01',
+          controlCode: 'on',
+          sorting: 1
+       },
+       {
+          deviceCode: 'P-07',
+          controlCode: 'on',
+          sorting: 1
+       },
+       {
+          deviceCode: 'A-01',
+          controlCode: 'modetv',
+          sorting: 1
+       }
+         ]
+       },
+       {
+       code: 'off',
+       name: 'Eteindre',
+       icon: 'radio-button-off',
+       comands: [ 
+           {
+              deviceCode: 'V-03',
+              controlCode: 'up',
+              sorting: 1
+           },
+           {
+              deviceCode: 'V-04',
+              controlCode: 'up',
+              sorting: 1
+           },
+           {
+              deviceCode: 'V-05',
+              controlCode: 'up',
+              sorting: 2
+           },
+         {
+            deviceCode: 'V-07',
+            controlCode: 'up',
+            sorting: 1
+         },
+         {
+            deviceCode: 'A-01',
+            controlCode: 'off',
+            sorting: 1
+       } ]
+       }
+       ]
+ });

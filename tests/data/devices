@@ -7,7 +7,7 @@ db.devices.insert(
      name: 'Lampadaire',
      type: 'SOCKET',
      protocol: 'rf433',
-     publicId: 'B',
+     publicId: '11111 B',
      photo: '../images/ampoule.svg',
      category: [ 'SOCKET' ],
      sorting: 1,
@@ -89,7 +89,7 @@ db.devices.insert(
      name: 'Lampe bleu',
      type: 'SOCKET',
      protocol: 'rf433',
-     publicId: 'C',
+     publicId: '11111 C',
      photo: '../images/ampoule.svg',
      category: [ 'SOCKET' ],
      sorting: 3,
@@ -714,7 +714,7 @@ db.devices.insert(
      name: 'Video Projecteur',
      type: 'SOCKET',
      protocol: 'rf433',
-     publicId: 'A',
+     publicId: '11111 A',
      photo: '../images/SOCKET.svg',
      category: [ 'VIDEO' ],
      sorting: 24,
@@ -945,3 +945,30 @@ db.devices.insert(
      }
      ]
  }); 
+db.devices.insert(
+ {
+     code: 'TV-01',
+     name: 'Télévision',
+     type: 'SOCKET',
+     protocol: 'rf433',
+     publicId: '00000 A',
+     photo: '../images/TV.svg',
+     category: [ 'VIDEO' ],
+     sorting: 24,
+     controls: [ {
+        code: 'on',
+        name: 'Allumer',
+        url: '',
+        icon: 'settings-power',
+        isStatefull: true,
+        status: 1, style: 'button'       
+     },
+     {
+        name: 'Eteindre',
+        code: 'off',
+        url: '',
+        icon: 'radio-button-off',
+        isStatefull: true,
+        status: 0, style: 'button'        
+     } ]
+ });

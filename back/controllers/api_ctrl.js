@@ -2,7 +2,7 @@ var Devices = require('../models/devices');
 var Categories = require('../models/category');
 var Scenarios = require('../models/scenarios');
 var remoteDio = process.env.REMOTEDIO;
-var homeCodeRF433 = process.env.HOMECODERF433;
+//var homeCodeRF433 = process.env.HOMECODERF433;
 var sleep  = require('sleep');
 var async = require('async');
 var request = require('request');
@@ -172,7 +172,8 @@ function runDeviceCommand(res,code,command,url,iterate,callback) {
           commandLine = 'sudo '+'send-'+device.protocol+' 0 '+remoteDio+' '+device.publicId+' '+commandCode;
         }
         if (device.protocol=="rf433") {
-          commandLine = 'sudo '+'send-'+device.protocol+' 0 '+homeCodeRF433+' '+device.publicId+' '+commandCode;
+          //commandLine = 'sudo '+'send-'+device.protocol+' 0 '+homeCodeRF433+' '+device.publicId+' '+commandCode;
+          commandLine = 'sudo '+'send-'+device.protocol+' 0 '+device.publicId+' '+commandCode;
         }
         if (device.protocol=="ir") {
           //Yamaha_RAV302
