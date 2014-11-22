@@ -1,0 +1,13 @@
+Scan Video Library
+{"jsonrpc": "2.0", "method": "VideoLibrary.Scan", "params": {"directory":"xxxxxxxxxxx"},"id": 1}
+
+Clean Video Library
+{"jsonrpc": "2.0", "method": "VideoLibrary.Clean", "id": 1}
+
+Scan Audio Library
+{"jsonrpc": "2.0", "method": "AudioLibrary.Scan", "params": {"directory":"xxxxxxxxxxx"},"id": 1}
+
+Clean Audio Library
+{"jsonrpc": "2.0", "method": "AudioLibrary.Clean", "id": 1}
+
+

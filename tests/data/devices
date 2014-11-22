@@ -942,7 +942,44 @@ db.devices.insert(
         isStatefull: false,
         status: 0, 
         style: 'button'
+     },
+     {
+        name: 'separator',
+        code: 'sep1',
+        url: '',
+        icon: '',
+        isStatefull: true,
+        status: 1, 
+        style: 'separator'       
+     },
+     {
+        name: 'RTL2',
+        code: 'right',
+        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%222.0%22,%22method%22:%22Player.Open%22,%22params%22:{%22item%22:{%22file%22:%22plugin://plugin.audio.radio_de/station/5170%22}},%22id%22:1}',
+        icon: '/images/radio/rtl2.png',
+        isStatefull: false,
+        status: 0, 
+        style: 'imgbutton'
+     },
+     {
+        name: 'RFM',
+        code: 'right',
+        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%222.0%22,%22method%22:%22Player.Open%22,%22params%22:{%22item%22:{%22file%22:%22plugin://plugin.audio.radio_de/station/2993%22}},%22id%22:1}',
+        icon: '/images/radio/rfm.png',
+        isStatefull: false,
+        status: 0, 
+        style: 'imgbutton'
+     },
+     {
+        name: 'Metropolys',
+        code: 'right',
+        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%222.0%22,%22method%22:%22Player.Open%22,%22params%22:{%22item%22:{%22file%22:%22plugin://plugin.audio.radio_de/station/4808%22}},%22id%22:1}',
+        icon: '/images/radio/metropolys.jpg',
+        isStatefull: false,
+        status: 0, 
+        style: 'imgbutton'
      }
+     
      ]
  }); 
 db.devices.insert(
@@ -961,7 +998,8 @@ db.devices.insert(
         url: '',
         icon: 'settings-power',
         isStatefull: true,
-        status: 1, style: 'button'       
+        status: 1, 
+        style: 'button'       
      },
      {
         name: 'Eteindre',
@@ -969,6 +1007,7 @@ db.devices.insert(
         url: '',
         icon: 'radio-button-off',
         isStatefull: true,
-        status: 0, style: 'button'        
+        status: 0, 
+        style: 'button'        
      } ]
  });

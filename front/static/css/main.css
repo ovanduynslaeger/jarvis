@@ -81,6 +81,20 @@ core-item.small {
       font-size: 9px;
 }
 
+
 core-icon {
-  margin: 0 4px 0 4px  
+  margin: 0 4px 0 4px; 
+  width: 24px;
+  height: 24px;
+}
+
+.image {
+  padding: 0px;
+}
+
+
+html /deep/ div[fit] {
+  border-radius: 50px;
+  width: 56px;
+  height: 56px;
 }

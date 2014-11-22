@@ -3,6 +3,54 @@ db = conn.getDB("jarvis");
 db.scenarios.remove({});
 db.scenarios.insert(
  {
+     name: 'Toutes les lumières',
+     code: 'SO-ALL',
+     category: 'SOCKET',
+     actions:  [ 
+     {
+       code: 'on',
+       name: 'Allumer',
+       icon: 'settings-power',
+       comands: [ {
+          deviceCode: 'P-01',
+          controlCode: 'on',
+          sorting: 1
+       },
+       {
+          deviceCode: 'P-03',
+          controlCode: 'on',
+          sorting: 2
+       },
+       {
+          deviceCode: 'P-04',
+          controlCode: 'on',
+          sorting: 3
+       } ]
+     },
+     {
+       code: 'off',
+       name: 'Eteindre',
+       icon: 'radio-button-off',
+       comands: [ {
+          deviceCode: 'P-01',
+          controlCode: 'off',
+          sorting: 1
+       },
+       {
+          deviceCode: 'P-03',
+          controlCode: 'off',
+          sorting: 2
+       },
+       {
+          deviceCode: 'P-04',
+          controlCode: 'off',
+          sorting: 3
+       } ]
+       }
+       ]
+ });
+db.scenarios.insert(
+ {
      name: 'Volets avants',
      code: 'S-AV',
      category: 'SHUTTER',
@@ -194,23 +242,13 @@ db.scenarios.insert(
           sorting: 1
        },
        {
-          deviceCode: 'V-01',
-          controlCode: 'down',
+          deviceCode: 'P-07',
+          controlCode: 'on',
           sorting: 1
        },
        {
-          deviceCode: 'V-02',
-          controlCode: 'down',
-          sorting: 1
-       },
-       {
-          deviceCode: 'V-03',
-          controlCode: 'down',
-          sorting: 1
-       },
-       {
-          deviceCode: 'V-04',
-          controlCode: 'down',
+          deviceCode: 'HTPC-01',
+          controlCode: 'on',
           sorting: 1
        },
        {
@@ -219,9 +257,9 @@ db.scenarios.insert(
           sorting: 2
        },
        {
-          deviceCode: 'V-06',
+          deviceCode: 'V-04',
           controlCode: 'down',
-          sorting: 3
+          sorting: 1
        },
        {
           deviceCode: 'V-07',
@@ -234,13 +272,23 @@ db.scenarios.insert(
           sorting: 1
        },
        {
-          deviceCode: 'P-07',
-          controlCode: 'on',
+          deviceCode: 'V-06',
+          controlCode: 'down',
+          sorting: 3
+       },
+       {
+          deviceCode: 'V-01',
+          controlCode: 'down',
           sorting: 1
        },
        {
-          deviceCode: 'HTPC-01',
-          controlCode: 'on',
+          deviceCode: 'V-02',
+          controlCode: 'down',
+          sorting: 1
+       },
+       {
+          deviceCode: 'V-03',
+          controlCode: 'down',
           sorting: 1
        },
        {
