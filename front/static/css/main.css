@@ -5,9 +5,15 @@ body {
 }
 
 .toolbar {
-    background-color: dodgerblue;
     color: white;
+    background-color: #526E9C;
 }
+
+.menu {
+    color: black;
+    background-color: #E5E5E5;
+}
+
 
 .container {
     margin-top:1%;
@@ -60,10 +66,10 @@ section .slider {
 }
 
 core-overlay-layer {
-  background-color: #E5E5E5;
-  width: 80%;
+  background-color: white;
+  width: 70%;
   alignment-baseline: central;
-  left: 10%;
+  left: 15%;
   font-size: 0.7em;
   margin:0;
   padding:0;
@@ -78,7 +84,7 @@ core-item {
 }
 
 core-item.small {
-      font-size: 9px;
+  font-size: 9px;
 }
 
 
@@ -86,6 +92,10 @@ core-icon {
   margin: 0 4px 0 4px; 
   width: 24px;
   height: 24px;
+}
+
+core-icon-button {
+  color: white;
 }
 
 .image {
@@ -97,4 +107,29 @@ html /deep/ div[fit] {
   border-radius: 50px;
   width: 56px;
   height: 56px;
+}
+
+paper-item {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+.constrained-height {
+  height: 150px;
+}
+
+.colored {
+  color: #0f9d58;
+}
+
+.dropdown.colored::shadow #ripple,
+.dropdown.colored::shadow #background {
+  border: 1px solid #0f9d58;
+  background-color: #b7e1cd;
+}
+
+html /deep/ core-collapse {
+  border: 0px solid #ccc;
+  padding: 8px;
 }

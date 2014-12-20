@@ -46,8 +46,10 @@
     <core-toolbar onclick="document.querySelector('#collapse{{id}}').toggle()"  style="background-color: {{bgc}};">
       <content select="img"></content>
       <content select="label"></content>
+      <core-icon-button icon="maps:navigation" onclick="toggleDialog('nav')" hidden?="{{nav!='HTPC'}}"/>
+
     </core-toolbar>
-    <div class="domo-device-actions" horizontal around-justified  layout wrap>
+    <div class="domo-device-actions" horizontal around-justified layout wrap>
       <content select="actions"></content>
     </div>
 
@@ -58,7 +60,8 @@
   Polymer({
     publish: {
       id: '',
-      bgc: ''
+      bgc: '',
+      nav: "false"
     }
   });
   </script>

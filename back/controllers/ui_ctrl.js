@@ -28,6 +28,29 @@ exports.index = function (req, res) {
 };
 
 
+exports.test = function (req, res) {
+    
+    var cb = function (req,res) {
+        console.log("Render");
+        res.render('test.jade', {
+            locals : {
+                title : 'Joshua'
+                ,description: 'Home'
+                ,author: 'Olivier Vanduynslaeger'
+                ,analyticssiteid: 'XXXXXXX'
+                ,categories: JSON.stringify(req.session.categories)
+                ,devices: JSON.stringify(req.session.devices)
+                ,scenarios: JSON.stringify(req.session.scenarios)
+            }
+        });
+    };
+
+    getDatas(req,res,cb);
+    //getCategories(req,res,cb);
+
+};
+
+
 
 function getCategories(req,res,cb) {
 

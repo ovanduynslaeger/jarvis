@@ -954,7 +954,7 @@ db.devices.insert(
      },
      {
         name: 'RTL2',
-        code: 'right',
+        code: 'rtl2',
         url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%222.0%22,%22method%22:%22Player.Open%22,%22params%22:{%22item%22:{%22file%22:%22plugin://plugin.audio.radio_de/station/5170%22}},%22id%22:1}',
         icon: '/images/radio/rtl2.png',
         isStatefull: false,
@@ -963,7 +963,7 @@ db.devices.insert(
      },
      {
         name: 'RFM',
-        code: 'right',
+        code: 'rfm',
         url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%222.0%22,%22method%22:%22Player.Open%22,%22params%22:{%22item%22:{%22file%22:%22plugin://plugin.audio.radio_de/station/2993%22}},%22id%22:1}',
         icon: '/images/radio/rfm.png',
         isStatefull: false,
@@ -972,14 +972,22 @@ db.devices.insert(
      },
      {
         name: 'Metropolys',
-        code: 'right',
+        code: 'metro',
         url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%222.0%22,%22method%22:%22Player.Open%22,%22params%22:{%22item%22:{%22file%22:%22plugin://plugin.audio.radio_de/station/4808%22}},%22id%22:1}',
         icon: '/images/radio/metropolys.jpg',
         isStatefull: false,
         status: 0, 
         style: 'imgbutton'
-     }
-     
+     },
+     {
+        name: 'test',
+        code: '',
+        url: '',
+        icon: 'chevron-right',
+        isStatefull: false,
+        status: 0, 
+        style: 'group'
+     }     
      ]
  }); 
 db.devices.insert(
@@ -989,6 +997,35 @@ db.devices.insert(
      type: 'SOCKET',
      protocol: 'rf433',
      publicId: '00000 A',
+     photo: '../images/TV.svg',
+     category: [ 'VIDEO' ],
+     sorting: 24,
+     controls: [ {
+        code: 'on',
+        name: 'Allumer',
+        url: '',
+        icon: 'settings-power',
+        isStatefull: true,
+        status: 1, 
+        style: 'button'       
+     },
+     {
+        name: 'Eteindre',
+        code: 'off',
+        url: '',
+        icon: 'radio-button-off',
+        isStatefull: true,
+        status: 0, 
+        style: 'button'        
+     } ]
+ });
+db.devices.insert(
+ {
+     code: 'VP-01',
+     name: 'Vidéo Projecteur',
+     type: 'SOCKET',
+     protocol: 'rf433',
+     publicId: '00000 B',
      photo: '../images/TV.svg',
      category: [ 'VIDEO' ],
      sorting: 24,

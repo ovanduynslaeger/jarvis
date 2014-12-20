@@ -252,6 +252,11 @@ db.scenarios.insert(
           sorting: 1
        },
        {
+          deviceCode: 'VP-01',
+          controlCode: 'on',
+          sorting: 1
+       },
+       {
           deviceCode: 'V-05',
           controlCode: 'down',
           sorting: 2
@@ -319,10 +324,21 @@ db.scenarios.insert(
             sorting: 1
          },
          {
+            deviceCode: 'VP-01',
+            controlCode: 'off',
+            sorting: 1
+         },
+         {
             deviceCode: 'A-01',
             controlCode: 'off',
             sorting: 1
-       } ]
+         },
+         {
+            deviceCode: 'VP-01',
+            controlCode: 'off',
+            sorting: 1
+         }  
+         ]
        }
        ]
  });
@@ -384,6 +400,11 @@ db.scenarios.insert(
        icon: 'settings-power',
        comands: [ 
        {
+          deviceCode: 'P-07',
+          controlCode: 'on',
+          sorting: 1
+       },
+       {
           deviceCode: 'V-03',
           controlCode: 'down',
           sorting: 1
@@ -409,15 +430,16 @@ db.scenarios.insert(
           sorting: 1
        },
        {
-          deviceCode: 'P-07',
-          controlCode: 'on',
-          sorting: 1
-       },
-       {
           deviceCode: 'A-01',
           controlCode: 'modetv',
           sorting: 1
+       },
+       {
+          deviceCode: 'VP-01',
+          controlCode: 'on',
+          sorting: 1
        }
+       
          ]
        },
        {
@@ -440,16 +462,27 @@ db.scenarios.insert(
               controlCode: 'up',
               sorting: 2
            },
-         {
-            deviceCode: 'V-07',
-            controlCode: 'up',
-            sorting: 1
-         },
-         {
-            deviceCode: 'A-01',
-            controlCode: 'off',
-            sorting: 1
-       } ]
+           {
+              deviceCode: 'V-07',
+              controlCode: 'up',
+              sorting: 1
+           },
+           {
+              deviceCode: 'VP-01',
+              controlCode: 'off',
+              sorting: 1
+           },
+           {
+              deviceCode: 'A-01',
+              controlCode: 'off',
+              sorting: 1
+           },
+           { 
+              deviceCode: 'VP-01',
+              controlCode: 'off',
+              sorting: 1
+           }
+       ]
        }
        ]
  });

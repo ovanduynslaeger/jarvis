@@ -13,6 +13,8 @@ module.exports = function (app) {
 
 	app.get('/', ui_ctrl.index);
 
+	app.get('/test', ui_ctrl.test);
+
     app.get('/api/device/:code', api_ctrl.deviceFindByCode);
 
     app.get('/api/devices', api_ctrl.listDevices);
