@@ -455,33 +455,6 @@ db.devices.insert(
         style: 'button'
      },
      {
-        name: 'Back',
-        code: 'back',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Back%22}',
-        icon: 'reply',
-        isStatefull: false,
-        status: 0,
-        style: 'button'
-     },
-     {
-        name: 'Menu',
-        code: 'menu',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ContextMenu%22}',
-        icon: 'menu',
-        isStatefull: false,
-        status: 0, 
-        style: 'button'
-     },
-     {
-        name: 'Ok',
-        code: 'ok',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Select%22}',
-        icon: 'done',
-        isStatefull: false,
-        status: 0, 
-        style: 'button'
-     },
-     {
         name: 'separator',
         code: 'sep1',
         url: '',
@@ -633,51 +606,6 @@ db.devices.insert(
         isStatefull: false,
         status: 0, 
         style: 'button'
-     },
-     {
-        name: 'separator',
-        code: 'sep1',
-        url: '',
-        icon: '',
-        isStatefull: true,
-        status: 1, 
-        style: 'separator'       
-     },
-     {
-        name: 'Haut',
-        code: 'up',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Up%22}',
-        icon: 'expand-less',
-        isStatefull: false,
-        status: 0, 
-        style: 'button'
-     },
-     {
-        name: 'Bas',
-        code: 'down',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Down%22}',
-        icon: 'expand-more',
-        isStatefull: false,
-        status: 0, 
-        style: 'button'
-     },
-     {
-        name: 'Gauche',
-        code: 'left',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Left%22}',
-        icon: 'chevron-left',
-        isStatefull: false,
-        status: 0, 
-        style: 'button'
-     },
-     {
-        name: 'Droite',
-        code: 'right',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Right%22}',
-        icon: 'chevron-right',
-        isStatefull: false,
-        status: 0, 
-        style: 'button'
      }
      ]
  }); 
@@ -764,42 +692,6 @@ db.devices.insert(
         style: 'button'
      },
      {
-        name: 'separator',
-        code: 'sep1',
-        url: '',
-        icon: '',
-        isStatefull: true,
-        status: 1, 
-        style: 'separator'       
-     },
-     {
-        name: 'Back',
-        code: 'back',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Back%22}',
-        icon: 'reply',
-        isStatefull: false,
-        status: 0,
-        style: 'button'
-     },
-     {
-        name: 'Menu',
-        code: 'menu',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ContextMenu%22}',
-        icon: 'menu',
-        isStatefull: false,
-        status: 0, 
-        style: 'button'
-     },
-     {
-        name: 'Ok',
-        code: 'ok',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Select%22}',
-        icon: 'done',
-        isStatefull: false,
-        status: 0, 
-        style: 'button'
-     },
-     {
         name: 'Information',
         code: 'info',
         url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Info%22}',
@@ -856,7 +748,7 @@ db.devices.insert(
      {
         name: 'Back',
         code: 'b',
-        url: http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%222.0%22,%22method%22:%22Player.GoTo%22,%22params%22:{%22playerid%22:0,%22to%22:%22previous%22},%22id%22:1}',
+        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%222.0%22,%22method%22:%22Player.GoTo%22,%22params%22:{%22playerid%22:0,%22to%22:%22previous%22},%22id%22:1}',
         icon: 'av:fast-rewind',
         isStatefull: false,
         status: 0, 
@@ -908,51 +800,6 @@ db.devices.insert(
         style: 'separator'       
      },
      {
-        name: 'Haut',
-        code: 'up',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Up%22}',
-        icon: 'expand-less',
-        isStatefull: false,
-        status: 0, 
-        style: 'button'
-     },
-     {
-        name: 'Bas',
-        code: 'down',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Down%22}',
-        icon: 'expand-more',
-        isStatefull: false,
-        status: 0, 
-        style: 'button'
-     },
-     {
-        name: 'Gauche',
-        code: 'left',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Left%22}',
-        icon: 'chevron-left',
-        isStatefull: false,
-        status: 0, 
-        style: 'button'
-     },
-     {
-        name: 'Droite',
-        code: 'right',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Right%22}',
-        icon: 'chevron-right',
-        isStatefull: false,
-        status: 0, 
-        style: 'button'
-     },
-     {
-        name: 'separator',
-        code: 'sep1',
-        url: '',
-        icon: '',
-        isStatefull: true,
-        status: 1, 
-        style: 'separator'       
-     },
-     {
         name: 'RTL2',
         code: 'rtl2',
         url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%222.0%22,%22method%22:%22Player.Open%22,%22params%22:{%22item%22:{%22file%22:%22plugin://plugin.audio.radio_de/station/5170%22}},%22id%22:1}',
@@ -980,14 +827,14 @@ db.devices.insert(
         style: 'imgbutton'
      },
      {
-        name: 'test',
-        code: '',
-        url: '',
-        icon: 'chevron-right',
+        name: 'Radio Paradise',
+        code: 'rp',
+        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%222.0%22,%22method%22:%22Player.Open%22,%22params%22:{%22item%22:{%22file%22:%22plugin://plugin.audio.radio_de/station/1885%22}},%22id%22:1}',
+        icon: '/images/radio/rp.png',
         isStatefull: false,
         status: 0, 
-        style: 'group'
-     }     
+        style: 'imgbutton'
+     }
      ]
  }); 
 db.devices.insert(
@@ -1075,261 +922,6 @@ db.devices.insert(
         status: 0, style: 'button'        
      } ]
  });
-db.devices.insert(
- {
-     code: 'HTPC-02',
-     name: 'Lecteur Audio',
-     type: 'HTPC',
-     protocol: '',
-     publicId: 'http://192.168.0.16:9080/',
-     photo: '../images/music.svg',
-     category: [ 'AUDIO' ],
-     sorting: 25,
-     controls: [ {
-        name: 'Allumer',
-        code: 'on',
-        url: 'http://192.168.0.16:8080/sarah/launch?key=xbmc',
-        icon: 'settings-power',
-        isStatefull: true,
-        status: 1, 
-        style: 'button'
-     },
-     {
-        name: 'Eteindre',
-        code: 'off',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Application.Quit%22}',
-        icon: 'radio-button-off',
-        isStatefull: false,
-        status: 0, 
-        style: 'button'
-     },
-     {
-        name: 'separator',
-        code: 'sep1',
-        url: '',
-        icon: '',
-        isStatefull: true,
-        status: 1, 
-        style: 'separator'       
-     },
-     {
-        name: 'Back',
-        code: 'back',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Back%22}',
-        icon: 'reply',
-        isStatefull: false,
-        status: 0,
-        style: 'button'
-     },
-     {
-        name: 'Menu',
-        code: 'menu',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ContextMenu%22}',
-        icon: 'menu',
-        isStatefull: false,
-        status: 0, 
-        style: 'button'
-     },
-     {
-        name: 'Ok',
-        code: 'ok',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Select%22}',
-        icon: 'done',
-        isStatefull: false,
-        status: 0, 
-        style: 'button'
-     },
-     {
-        name: 'Information',
-        code: 'info',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Info%22}',
-        icon: 'info-outline',
-        isStatefull: false,
-        status: 0, 
-        style: 'button'
-     },
-     {
-        name: 'separator',
-        code: 'sep1',
-        url: '',
-        icon: '',
-        isStatefull: true,
-        status: 1, 
-        style: 'separator'       
-     },
-     {
-        name: 'Mute',
-        code: 'info',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ExecuteAction%22,%22params%22:%20{%22action%22:%20%22mute%22}}',
-        icon: 'av:volume-off',
-        isStatefull: false,
-        status: 0, 
-        style: 'button'
-     },
-     {
-        name: 'VolumeDown',
-        code: 'voldown',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ExecuteAction%22,%22params%22:%20{%22action%22:%20%22volumedown%22}}',
-        icon: 'av:volume-down',
-        isStatefull: false,
-        status: 0, 
-        style: 'button'
-     },
-     {
-        name: 'VolumeUp',
-        code: 'volup',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ExecuteAction%22,%22params%22:%20{%22action%22:%20%22volumeup%22}}',
-        icon: 'av:volume-up',
-        isStatefull: false,
-        status: 0, 
-        style: 'button'
-     },
-     {
-        name: 'separator',
-        code: 'sep1',
-        url: '',
-        icon: '',
-        isStatefull: true,
-        status: 1, 
-        style: 'separator'       
-     },
-     {
-        name: 'Back',
-        code: 'b',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Player.GoTo%22,%22params%22:%20{%22playerid%22:%20%220%22,%22to%22:%22previous%22}}',
-        icon: 'av:fast-rewind',
-        isStatefull: false,
-        status: 0, 
-        style: 'button'
-     },
-     {
-        name: 'Play',
-        code: 'play',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Player.PlayPause%22%20,%20%22params%22:%20{%22playerid%22:%200}}',
-                icon: 'av:play-arrow',
-        isStatefull: false,
-        status: 0, 
-        style: 'button'
-     },
-     {
-        name: 'Pause',
-        code: 'pause',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Player.PlayPause%22%20,%20%22params%22:%20{%22playerid%22:%200}}',
-        icon: 'av:pause',
-        isStatefull: false,
-        status: 0, 
-        style: 'button'
-     },
-     {
-        name: 'Stop',
-        code: 'stop',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Player.Stop%22%20,%20%22params%22:%20{%22playerid%22:%200}}',
-        icon: 'av:stop',
-        isStatefull: false,
-        status: 0, 
-        style: 'button'
-     },
-     {
-        name: 'Forward',
-        code: 'f',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Player.GoTo%22,%22params%22:%20{%22playerid%22:%20%220%22,%22to%22:%22next%22}}',
-        icon: 'av:fast-forward',
-        isStatefull: false,
-        status: 0, 
-        style: 'button'
-     },
-     {
-        name: 'separator',
-        code: 'sep1',
-        url: '',
-        icon: '',
-        isStatefull: true,
-        status: 1, 
-        style: 'separator'       
-     },
-     {
-        name: 'Haut',
-        code: 'up',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Up%22}',
-        icon: 'expand-less',
-        isStatefull: false,
-        status: 0, 
-        style: 'button'
-     },
-     {
-        name: 'Bas',
-        code: 'down',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Down%22}',
-        icon: 'expand-more',
-        isStatefull: false,
-        status: 0, 
-        style: 'button'
-     },
-     {
-        name: 'Gauche',
-        code: 'left',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Left%22}',
-        icon: 'chevron-left',
-        isStatefull: false,
-        status: 0, 
-        style: 'button'
-     },
-     {
-        name: 'Droite',
-        code: 'right',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Right%22}',
-        icon: 'chevron-right',
-        isStatefull: false,
-        status: 0, 
-        style: 'button'
-     },
-     {
-        name: 'separator',
-        code: 'sep1',
-        url: '',
-        icon: '',
-        isStatefull: true,
-        status: 1, 
-        style: 'separator'       
-     },
-     {
-        name: 'RTL2',
-        code: 'rtl2',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%222.0%22,%22method%22:%22Player.Open%22,%22params%22:{%22item%22:{%22file%22:%22plugin://plugin.audio.radio_de/station/5170%22}},%22id%22:1}',
-        icon: '/images/radio/rtl2.png',
-        isStatefull: false,
-        status: 0, 
-        style: 'imgbutton'
-     },
-     {
-        name: 'RFM',
-        code: 'rfm',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%222.0%22,%22method%22:%22Player.Open%22,%22params%22:{%22item%22:{%22file%22:%22plugin://plugin.audio.radio_de/station/2993%22}},%22id%22:1}',
-        icon: '/images/radio/rfm.png',
-        isStatefull: false,
-        status: 0, 
-        style: 'imgbutton'
-     },
-     {
-        name: 'Metropolys',
-        code: 'metro',
-        url: 'http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%222.0%22,%22method%22:%22Player.Open%22,%22params%22:{%22item%22:{%22file%22:%22plugin://plugin.audio.radio_de/station/4808%22}},%22id%22:1}',
-        icon: '/images/radio/metropolys.jpg',
-        isStatefull: false,
-        status: 0, 
-        style: 'imgbutton'
-     },
-     {
-        name: 'test',
-        code: '',
-        url: '',
-        icon: 'chevron-right',
-        isStatefull: false,
-        status: 0, 
-        style: 'group'
-     }     
-     ]
- }); 
 db.devices.insert(
  {
      code: 'TV-01',
