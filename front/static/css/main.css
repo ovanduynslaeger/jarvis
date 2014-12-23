@@ -133,3 +133,19 @@ html /deep/ core-collapse {
   border: 0px solid #ccc;
   padding: 8px;
 }
+
+ paper-checkbox {
+      padding: 20px 20px 20px 0;
+    }
+    0
+section {
+  width: 300px;
+}
+
+paper-checkbox.blue::shadow #ink[checked] {
+  color: #4285f4;
+}
+
+paper-checkbox.blue::shadow #checkbox.checked {
+  border-color: #4285f4;
+}

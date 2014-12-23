@@ -319,12 +319,12 @@ db.scenarios.insert(
             sorting: 1
          },
          {
-            deviceCode: 'HTPC-01',
+            deviceCode: 'VP-01',
             controlCode: 'off',
             sorting: 1
          },
          {
-            deviceCode: 'VP-01',
+            deviceCode: 'HTPC-01',
             controlCode: 'off',
             sorting: 1
          },
@@ -463,13 +463,13 @@ db.scenarios.insert(
               sorting: 2
            },
            {
-              deviceCode: 'V-07',
-              controlCode: 'up',
+              deviceCode: 'VP-01',
+              controlCode: 'off',
               sorting: 1
            },
            {
-              deviceCode: 'VP-01',
-              controlCode: 'off',
+              deviceCode: 'V-07',
+              controlCode: 'up',
               sorting: 1
            },
            {

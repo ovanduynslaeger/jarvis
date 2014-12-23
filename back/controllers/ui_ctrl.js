@@ -32,7 +32,7 @@ exports.test = function (req, res) {
     
     var cb = function (req,res) {
         console.log("Render");
-        res.render('test.jade', {
+        res.render('parameters.jade', {
             locals : {
                 title : 'Joshua'
                 ,description: 'Home'

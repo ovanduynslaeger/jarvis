@@ -1,151 +1,157 @@
 extends layout
 block main
  template(is="auto-binding")
-  core-scaffold
-   core-header-panel(navigation,flex,mode="waterfall",class="menu")
+  core-drawer-panel(forceNarrow,id="drawerPanel")
+   core-header-panel(drawer,mode="waterfall",class="menu")
     core-toolbar(class="toolbar")
      span Menu
     core-menu(class="menu")
      core-item(icon="settings",label="Paramètres")
      core-item(id="help",icon="help",label="Aide",onclick="toggleDialog('help')")
-   div(tool,flex) Jarvis
-   template(if="{{$.pages.selected != 0}}")
-    core-icon-button(tool,icon="arrow-back",on-tap="{{back}}")
-   div(class="content)
-    core-animated-pages(id="pages",flex selected="0",on-core-animated-pages-transition-end="{{transitionend}}",transitions="cross-fade-all hero-transition")
-     div(id="container",flex,horizontal,wrap,layout,hero-p)
+   core-header-panel(main,mode="waterfall")
+    core-toolbar(class="toolbar")
+     paper-icon-button(id="navicon",icon="menu",onclick="toggleHeaderPanel()")
+     span(flex) Jarvis
+     template(if="{{$.pages.selected != 0}}")
+      paper-icon-button(icon="arrow-back",on-tap="{{back}}")
+    div(class="content)
+     core-animated-pages(id="pages",flex selected="0",on-core-animated-pages-transition-end="{{transitionend}}",transitions="cross-fade-all hero-transition")
+      div(id="container",flex,horizontal,wrap,layout,hero-p)
+       template(repeat="{{category in items}}")
+        div(class="tile",style="background-color: {{category.secondcolor}};",vertical,center-justified,layout,hero-id="item-{{category.level}}",hero?="{{$.pages.selected === category.level +1 || lastSelected === category.level + 1}",on-tap="{{selectView}}")
+         img(src="{{category.photo}}")
       template(repeat="{{category in items}}")
-       div(class="tile",style="background-color: {{category.secondcolor}};",vertical,center-justified,layout,hero-id="item-{{category.level}}",hero?="{{$.pages.selected === category.level +1 || lastSelected === category.level + 1}",on-tap="{{selectView}}")
-        img(src="{{category.photo}}")
-     template(repeat="{{category in items}}")
-      section(vertical,layout,style="display: block")
-       div(style="background-color: {{category.maincolor}};",class="view",flex,horizontal,wrap,center-justified,layout,hero-id="item-{{category.level}}",hero?="{{$.pages.selected === category.level + 1 || $.pages.selected === 0}}")
-        template(repeat="{{sce in scenarios}}")
-         template(if="{{sce.category === category.code}}")
-          domo-device(id="{{sce.code}}",bgc="{{category.secondcolor}}",nav=false)
-           img(src="../images/scenario.svg",width="48px",height="48px")
-           actions
-            core-collapse(id="collapse{{sce.code}}")
-             template(repeat="{{action in sce.actions}}")
-              //core-icon-button(icon="info")
-              paper-fab(icon="{{action.icon}}",onclick="sendURL('/api/scenario/{{sce.code}}/command/{{action.code}}')")
-           label(flex) {{sce.name}}
-        template(repeat="{{device in devices}}")
-         //template(if="{{device.category === category.code}}")
-         template(if="{{contain(category.code,device.category)}}")
-          //domo-device(id="{{category.code}}{{device.code}}",bgc="{{category.secondcolor}}",nav="{{device.type='HTPC'}}")
-          domo-device(id="{{category.code}}{{device.code}}",bgc="{{category.secondcolor}}",nav="{{device.type}}")
-           img(src="{{device.photo}}",width="48px",height="48px")
-           actions
-            core-collapse(id="collapse{{category.code}}{{device.code}}")
-             template(repeat="{{control in device.controls}}")
-              template(if="{{control.style === 'separator'}}")
-               div(layout,horizontal,center-justified)
-              template(if="{{control.style === 'imgbutton'}}")
-               template(if="{{control.url === '' }}")
-                paper-fab(class="image",src="{{control.icon}}",onclick="sendURL('/api/device/{{device.code}}/command/{{control.code}}/iterate/1')")
-               template(if="{{control.url !== '' }}")
-                paper-fab(class="image",src="{{control.icon}}",onclick="sendURL('{{control.url}}')")
-              template(if="{{control.style === 'button'}}")
-               template(if="{{control.url === '' }}")
-                paper-fab(icon="{{control.icon}}",onclick="sendURL('/api/device/{{device.code}}/command/{{control.code}}/iterate/1')")
-               template(if="{{control.url !== '' }}")
-                paper-fab(icon="{{control.icon}}",onclick="sendURL('{{control.url}}')")
-              template(if="{{control.style === 'slide'}}")
-               paper-fab(icon="av:volume-up",onclick="sendURL('/api/device/{{device.code}}/command/vol/iterate/'+document.getElementById('ratings{{category.code}}{{device.code}}{{control.code}}').value)")
-               section(class="slider")
-                paper-slider(id="ratings{{category.code}}{{device.code}}{{control.code}}",pin,snaps,min="-10",max="10",step="2",value="0")
-                span(id="ratingsLabel")
-           label(flex) {{device.name}}
-           
-  paper-dialog(id="helpdialog",heading="Aide",transition="help",layered="true")
-   div(layout,vertical,wrap)
-    core-item(icon="menu",label="Menu")
-    core-item(icon="settings-power",label="Allumer")
-    core-item(icon="radio-button-off",label="Eteindre")
-    core-item(icon="hardware:tv",label="Son PS3 vers ampli")
-    core-item(icon="image:panorama-horizontal",label="Son télévision vers ampli")
-    core-item(icon="reply",label="Retour")
-    core-item(icon="done",label="Valider")
-    core-item(icon="communication:message",label="Activer les sous-titres")
-    core-item(icon="communication:messenger",label="Désactiver les sous-titres")
-   core-icon-button(icon="close",affirmative) 
- 
-  paper-dialog(id="navdialog",transition="nav",layered="true")
-   div(vertical,center,layout,wrap)
-    paper-fab(icon="expand-less",onclick="sendURL('http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Up%22}')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
-    div(horizontal,center,layout,wrap)
-     paper-fab(icon="chevron-left",onclick="sendURL('http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Left%22}')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
-     paper-fab(icon="done",onclick="sendURL('http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Select%22}')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
-     paper-fab(icon="chevron-right",onclick="sendURL('http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Right%22}')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
-    paper-fab(icon="expand-more",onclick="sendURL('http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Down%22}')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
-    div(horizontal,around-justified,layout,wrap)
-     paper-fab(mini,icon="reply",onclick="sendURL('http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Back%22}')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
-     paper-fab(hidden)
-     paper-fab(mini,icon="menu",onclick="sendURL('http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ContextMenu%22}')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
-   core-icon-button(icon="close",affirmative) 
+       section(vertical,layout,style="display: block")
+        div(style="background-color: {{category.maincolor}};",class="view",flex,horizontal,wrap,center-justified,layout,hero-id="item-{{category.level}}",hero?="{{$.pages.selected === category.level + 1 || $.pages.selected === 0}}")
+         template(repeat="{{sce in scenarios}}")
+          template(if="{{sce.category === category.code}}")
+           domo-device(id="{{sce.code}}",bgc="{{category.secondcolor}}",nav=false)
+            img(src="../images/scenario.svg",width="48px",height="48px")
+            actions
+             core-collapse(id="collapse{{sce.code}}")
+              template(repeat="{{action in sce.actions}}")
+               paper-fab(icon="{{action.icon}}",onclick="sendURL('/api/scenario/{{sce.code}}/command/{{action.code}}')")
+            label(flex) {{sce.name}}
+         template(repeat="{{device in devices}}")
+          //template(if="{{device.category === category.code}}")
+          template(if="{{contain(category.code,device.category)}}")
+           //domo-device(id="{{category.code}}{{device.code}}",bgc="{{category.secondcolor}}",nav="{{device.type='HTPC'}}")
+           domo-device(id="{{category.code}}{{device.code}}",bgc="{{category.secondcolor}}",nav="{{device.type}}")
+            img(src="{{device.photo}}",width="48px",height="48px")
+            actions
+             core-collapse(id="collapse{{category.code}}{{device.code}}")
+              template(repeat="{{control in device.controls}}")
+               template(if="{{control.style === 'separator'}}")
+                div(layout,horizontal,center-justified)
+               template(if="{{control.style === 'imgbutton'}}")
+                template(if="{{control.url === '' }}")
+                 paper-fab(class="image",src="{{control.icon}}",onclick="sendURL('/api/device/{{device.code}}/command/{{control.code}}/iterate/1')")
+                template(if="{{control.url !== '' }}")
+                 paper-fab(class="image",src="{{control.icon}}",onclick="sendURL('{{control.url}}')")
+               template(if="{{control.style === 'button'}}")
+                template(if="{{control.url === '' }}")
+                 paper-fab(icon="{{control.icon}}",onclick="sendURL('/api/device/{{device.code}}/command/{{control.code}}/iterate/1')")
+                template(if="{{control.url !== '' }}")
+                 paper-fab(icon="{{control.icon}}",onclick="sendURL('{{control.url}}')")
+               template(if="{{control.style === 'slide'}}")
+                paper-fab(icon="av:volume-up",onclick="sendURL('/api/device/{{device.code}}/command/vol/iterate/'+document.getElementById('ratings{{category.code}}{{device.code}}{{control.code}}').value)")
+                section(class="slider")
+                 paper-slider(id="ratings{{category.code}}{{device.code}}{{control.code}}",pin,snaps,min="-10",max="10",step="2",value="0")
+                 span(id="ratingsLabel")
+            label(flex) {{device.name}}
+            
+   paper-dialog(id="helpdialog",heading="Aide",transition="help",layered="true")
+    div(layout,vertical,wrap)
+     core-item(icon="menu",label="Menu")
+     core-item(icon="settings-power",label="Allumer")
+     core-item(icon="radio-button-off",label="Eteindre")
+     core-item(icon="hardware:tv",label="Son PS3 vers ampli")
+     core-item(icon="image:panorama-horizontal",label="Son télévision vers ampli")
+     core-item(icon="reply",label="Retour")
+     core-item(icon="done",label="Valider")
+     core-item(icon="communication:message",label="Activer les sous-titres")
+     core-item(icon="communication:messenger",label="Désactiver les sous-titres")
+    paper-icon-button(icon="close",affirmative) 
   
-  script.
-     function sendURL(url) {
-        //alert(url);
-        $.get(url,function(data,status) {
-        });
-     }
-    
-     function toggleDialog(transition) {
-       var dialog = document.querySelector('paper-dialog[transition=' + transition + ']');
-       dialog.toggle();
-     }
- 
-  script.
-     addEventListener('template-bound', function(e) {
-      var scope = e.target;
-      var items = [];
-      var devices = [];
-      var scenarios = [];
- 
-      //var ratings = document.querySelector('#ratings');
- 
-       for (var cat in !{categories}) {
-          items.push(!{categories}[cat]);
-       }
-       scope.items = items;
-       
-       for (var dev in !{devices}) {
-          devices.push(!{devices}[dev]);
-       }
-       scope.devices = devices;
- 
-       for (var sce in !{scenarios}) {
-          scenarios.push(!{scenarios}[sce]);
-       }
-       scope.scenarios = scenarios;
-       console.log(scenarios);
- 
-       scope.contain = function(value,array) {
-          var b = $.inArray(value, array);
-          return b != -1;
-       }
-       
-       scope.selectView = function(e) {
-         var cat = e.target.templateInstance.model.category;
-         this.$.pages.selected = cat.level;
-         var help = document.getElementById('help');
-         help.show();
-       }
- 
-       scope.back = function() {
-         
-         this.lastSelected = this.$.pages.selected;
-         //if (this.lastSelected === 0) toggleDialog('help')
-         this.$.pages.selected = 0;
-       }
- 
-       scope.transitionend = function() {
-         if (this.lastSelected) {
-           this.lastSelected = null;
-         }
-         var help = document.getElementById('help');
-         help.hide();
-       }
-     })
+   paper-dialog(id="navdialog",transition="nav",layered="true")
+    div(vertical,center,layout,wrap)
+     paper-fab(icon="expand-less",onclick="sendURL('http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Up%22}')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
+     div(horizontal,center,layout,wrap)
+      paper-fab(icon="chevron-left",onclick="sendURL('http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Left%22}')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
+      paper-fab(icon="done",onclick="sendURL('http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Select%22}')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
+      paper-fab(icon="chevron-right",onclick="sendURL('http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Right%22}')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
+     paper-fab(icon="expand-more",onclick="sendURL('http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Down%22}')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
+     div(horizontal,around-justified,layout,wrap)
+      paper-fab(mini,icon="reply",onclick="sendURL('http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Back%22}')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
+      paper-fab(hidden)
+      paper-fab(mini,icon="menu",onclick="sendURL('http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ContextMenu%22}')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
+    paper-icon-button(icon="close",affirmative) 
+   
+   script.
+      function sendURL(url) {
+         //alert(url);
+         $.get(url,function(data,status) {
+         });
+      }
+      
+      function toggleHeaderPanel() {
+        var drawerPanel = document.getElementById('drawerPanel');
+        drawerPanel.togglePanel();
+      }
+     
+      function toggleDialog(transition) {
+        var dialog = document.querySelector('paper-dialog[transition=' + transition + ']');
+        dialog.toggle();
+      }
+  
+      addEventListener('template-bound', function(e) {
+       var scope = e.target;
+       var items = [];
+       var devices = [];
+       var scenarios = [];
+  
+       //var ratings = document.querySelector('#ratings');
+  
+        for (var cat in !{categories}) {
+           items.push(!{categories}[cat]);
+        }
+        scope.items = items;
+        
+        for (var dev in !{devices}) {
+           devices.push(!{devices}[dev]);
+        }
+        scope.devices = devices;
+  
+        for (var sce in !{scenarios}) {
+           scenarios.push(!{scenarios}[sce]);
+        }
+        scope.scenarios = scenarios;
+        console.log(scenarios);
+  
+        scope.contain = function(value,array) {
+           var b = $.inArray(value, array);
+           return b != -1;
+        }
+        
+        scope.selectView = function(e) {
+          var cat = e.target.templateInstance.model.category;
+          this.$.pages.selected = cat.level;
+          var help = document.getElementById('help');
+          help.show();
+        }
+  
+        scope.back = function() {
+          
+          this.lastSelected = this.$.pages.selected;
+          //if (this.lastSelected === 0) toggleDialog('help')
+          this.$.pages.selected = 0;
+        }
+  
+        scope.transitionend = function() {
+          if (this.lastSelected) {
+            this.lastSelected = null;
+          }
+          var help = document.getElementById('help');
+          help.hide();
+        }
+      })
