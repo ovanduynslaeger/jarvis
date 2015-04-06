@@ -1,22 +1,7 @@
-//setup Dependencies
-var mongoose = require('mongoose');
-
-
-var CategorySchema = new mongoose.Schema({
-    code: String,
-    level: String,
-    name: String,
-    photo: String,
-    maincolor: String,
-    secondcolor: String
-});
-
-var categories = mongoose.model('categories', CategorySchema);
-
 exports.findAll = function (cb) {
-    categories.find({}, {_id:0}).exec(cb);
-};
-
-exports.save = function(device, cb){
-    categories.upsert({code:device.code}, device).exec(this.findByCode(device.code, cb));
+    var cat =  [{ "code" : "SOCKET", "level" : "1", "name" : "Lumières", "photo" : "/images/SOCKET.svg", "maincolor" : "Salmon", "secondcolor" : "FireBrick" , "jeedomcategory" : "light"},
+{"code" : "SHUTTER", "level" : "2", "name" : "Volets", "photo" : "/images/SHUTTER.svg", "maincolor" : "LightGreen", "secondcolor" : "MediumSeaGreen" , "jeedomcategory" : "automatism" },
+{"code" : "AUDIO", "level" : "3", "name" : "Audio", "photo" : "/images/AUDIO.svg", "maincolor" : "Plum", "secondcolor" : "Purple", "jeedomcategory" : "heating" },
+{"code" : "VIDEO", "level" : "4", "name" : "Vidéo", "photo" : "/images/VIDEO.svg", "maincolor" : "SandyBrown", "secondcolor" : "DarkOrange", "jeedomcategory" : "default" } ];
+    cb(null,cat);
 };

@@ -23,41 +23,26 @@ block main
       template(repeat="{{category in items}}")
        section(vertical,layout,style="display: block")
         div(style="background-color: {{category.maincolor}};",class="view",flex,horizontal,wrap,center-justified,layout,hero-id="item-{{category.level}}",hero?="{{$.pages.selected === category.level + 1 || $.pages.selected === 0}}")
-         template(repeat="{{sce in scenarios}}")
-          template(if="{{sce.category === category.code}}")
-           domo-device(id="{{sce.code}}",bgc="{{category.secondcolor}}",nav=false)
-            img(src="../images/scenario.svg",width="48px",height="48px")
-            actions
-             core-collapse(id="collapse{{sce.code}}")
-              template(repeat="{{action in sce.actions}}")
-               paper-fab(icon="{{action.icon}}",onclick="sendURL('/api/scenario/{{sce.code}}/command/{{action.code}}')")
-            label(flex) {{sce.name}}
          template(repeat="{{device in devices}}")
-          //template(if="{{device.category === category.code}}")
-          template(if="{{contain(category.code,device.category)}}")
-           //domo-device(id="{{category.code}}{{device.code}}",bgc="{{category.secondcolor}}",nav="{{device.type='HTPC'}}")
-           domo-device(id="{{category.code}}{{device.code}}",bgc="{{category.secondcolor}}",nav="{{device.type}}")
-            img(src="{{device.photo}}",width="48px",height="48px")
+          template(if="{{contain(category.jeedomcategory,device.category)}}")
+           domo-device(id="{{category.code}}{{device.id}}",bgc="{{category.secondcolor}}",nav="{{device.display.parameters.nav}}")
+            img(src="{{device.display.parameters.photo}}",width="48px",height="48px")
             actions
-             core-collapse(id="collapse{{category.code}}{{device.code}}")
-              template(repeat="{{control in device.controls}}")
-               template(if="{{control.style === 'separator'}}")
-                div(layout,horizontal,center-justified)
-               template(if="{{control.style === 'imgbutton'}}")
-                template(if="{{control.url === '' }}")
-                 paper-fab(class="image",src="{{control.icon}}",onclick="sendURL('/api/device/{{device.code}}/command/{{control.code}}/iterate/1')")
-                template(if="{{control.url !== '' }}")
-                 paper-fab(class="image",src="{{control.icon}}",onclick="sendURL('{{control.url}}')")
-               template(if="{{control.style === 'button'}}")
-                template(if="{{control.url === '' }}")
-                 paper-fab(icon="{{control.icon}}",onclick="sendURL('/api/device/{{device.code}}/command/{{control.code}}/iterate/1')")
-                template(if="{{control.url !== '' }}")
-                 paper-fab(icon="{{control.icon}}",onclick="sendURL('{{control.url}}')")
-               template(if="{{control.style === 'slide'}}")
-                paper-fab(icon="av:volume-up",onclick="sendURL('/api/device/{{device.code}}/command/vol/iterate/'+document.getElementById('ratings{{category.code}}{{device.code}}{{control.code}}').value)")
-                section(class="slider")
-                 paper-slider(id="ratings{{category.code}}{{device.code}}{{control.code}}",pin,snaps,min="-10",max="10",step="2",value="0")
-                 span(id="ratingsLabel")
+             core-collapse(id="collapse{{category.code}}{{device.id}}")
+              template(repeat="{{control in device.cmds}}")
+               template(if="{{control.isVisible === '1'}}")
+                template(if="{{control.display.forceReturnLineBefore === '1'}}")
+                 div(layout,horizontal,center-justified)
+                template(if="{{control.display.parameters.style === 'imgbutton'}}")
+                 paper-fab(class="image",src="{{control.display.parameters.icon}}",onclick="sendURL('/api/jeedom/cmd/{{control.id}}')")
+                template(if="{{control.display.parameters.style === 'button'}}")
+                 paper-fab(icon="{{control.display.parameters.icon}}",onclick="sendURL('/api/jeedom/cmd/{{control.id}}')")
+                template(if="{{control.display.parameters.style === 'slide'}}")
+                 paper-fab(icon="{{control.display.parameters.icon}}",onclick="sendURL('/api/device/{{control.id}}/slide/'+document.getElementById('ratings{{category.code}}{{device.id}}{{control.id}}').value)")
+                 section(class="slider")
+                  paper-slider(id="ratings{{category.code}}{{device.id}}{{control.id}}",pin,snaps,min="0",max="{{control.configuration.maxValue}}",step="2",value="0")
+                template(if="{{control.display.forceReturnLineAfter === '1'}}")
+                 div(layout,horizontal,center-justified)
             label(flex) {{device.name}}
             
    paper-dialog(id="helpdialog",heading="Aide",transition="help",layered="true")
@@ -75,21 +60,23 @@ block main
   
    paper-dialog(id="navdialog",transition="nav",layered="true")
     div(vertical,center,layout,wrap)
-     paper-fab(icon="expand-less",onclick="sendURL('http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Up%22}')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
+     paper-fab(icon="expand-less",onclick="sendURL('/api/jeedom/cmd/171')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
      div(horizontal,center,layout,wrap)
-      paper-fab(icon="chevron-left",onclick="sendURL('http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Left%22}')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
-      paper-fab(icon="done",onclick="sendURL('http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Select%22}')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
-      paper-fab(icon="chevron-right",onclick="sendURL('http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Right%22}')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
-     paper-fab(icon="expand-more",onclick="sendURL('http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Down%22}')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
+      paper-fab(icon="chevron-left",onclick="sendURL('/api/jeedom/cmd/172')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
+      paper-fab(icon="done",onclick="sendURL('/api/jeedom/cmd/173')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
+      paper-fab(icon="chevron-right",onclick="sendURL('/api/jeedom/cmd/174')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
+     paper-fab(icon="expand-more",onclick="sendURL('/api/jeedom/cmd/175')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
      div(horizontal,around-justified,layout,wrap)
-      paper-fab(mini,icon="reply",onclick="sendURL('http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.Back%22}')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
+      paper-fab(mini,icon="reply",onclick="sendURL('/api/jeedom/cmd/176')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
       paper-fab(hidden)
-      paper-fab(mini,icon="menu",onclick="sendURL('http://192.168.0.16:9080/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22id%22:%201,%20%22method%22:%20%22Input.ContextMenu%22}')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
+      paper-fab(mini,icon="home",onclick="sendURL('/api/jeedom/cmd/163')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
+      paper-fab(hidden)
+      paper-fab(mini,icon="menu",onclick="sendURL('/api/jeedom/cmd/101')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
     paper-icon-button(icon="close",affirmative) 
    
    script.
       function sendURL(url) {
-         //alert(url);
+         alert(url);
          $.get(url,function(data,status) {
          });
       }
@@ -108,8 +95,7 @@ block main
        var scope = e.target;
        var items = [];
        var devices = [];
-       var scenarios = [];
-  
+
        //var ratings = document.querySelector('#ratings');
   
         for (var cat in !{categories}) {
@@ -122,15 +108,11 @@ block main
         }
         scope.devices = devices;
   
-        for (var sce in !{scenarios}) {
-           scenarios.push(!{scenarios}[sce]);
-        }
-        scope.scenarios = scenarios;
-        console.log(scenarios);
-  
         scope.contain = function(value,array) {
-           var b = $.inArray(value, array);
-           return b != -1;
+           //var b = $.inArray(value, array);
+           //return b != -1;
+           //alert(array["light"]);
+           return array[value] === "1";
         }
         
         scope.selectView = function(e) {
