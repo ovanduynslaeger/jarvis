@@ -1,22 +1,11 @@
 //setup Dependencies
 var Devices = require('./back/models/devices');
 
-var exec = require('child_process').exec;
-
 var connect = require('connect')
-    , mongoose = require('mongoose')
     , express = require('express')
     , io = require('socket.io')
     , port = process.env.PORT
     , ip = process.env.IP ;
-
-// Mongo connection
-mongoose.connect('mongodb://'+ip+'/jarvis');
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'Connexion to Mongo failed'));
-db.once('open', function callback () {
-    console.log("Connexion to Mongo success !");
-});
 
 //Setup Express
 var server = express.createServer();
@@ -62,6 +51,7 @@ server.error(function(err, req, res, next){
 
 
 //Setup Socket.IO
+/*
 io = io.listen(server);
 io.sockets.on('connection', function(socket){
 	console.log('Client Connected');
@@ -70,9 +60,7 @@ io.sockets.on('connection', function(socket){
         if (err) {
             //res.send("ERROR")
         }
-        //res.writeHead(200, {"Content-Type": "application/json"});
         console.log('Devices '+devices);
-    	//socket.emit('devices',devices);
 
     });
 
@@ -81,44 +69,13 @@ io.sockets.on('connection', function(socket){
 		socket.emit('server_message',data);
 	});
 
-socket.on('commande', function(data){
-
-	 console.log("commande data "+data);
-
-
-		    var code = data.code;
-		    console.log("commande data.code "+code);
-		    var status = data.status;
-		    console.log("commande data.status "+status);
-		    var cb = function (err, device) {
-
-		        if (err) {
-		            //res.send("ERROR")
-		        	console.log("ERR ");
-		        	socket.emit('server_message',"ERROR");
-		        }
-
-		        exec('sudo /var/www/api/rf/dio/send 0 '+'12345678'+' '+code+' '+status, function (error, stdout, stderr) {
-		            if(err) console.error(err);
-		            // output is in stdout
-
-		        });
-		        socket.emit('server_message',"Done");
-
-		    };
-
-		    //Devices.updateStatus(code, status, cb);
-
-
-	});
-
-
 socket.on('disconnect', function(){
   console.log('Client Disconnected.');
 });
 
 });
 
+*/
 
 function NotFound(msg) {
     this.name = 'NotFound';
