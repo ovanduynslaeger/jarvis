@@ -1,0 +1,1 @@
+http://192.168.0.14/jeedom/core/api/jeeApi.php?request={"jsonrpc":"2.0","id":1,"method":"object::all","params":{"apikey" : ""}}
