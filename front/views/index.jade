@@ -25,25 +25,36 @@ block main
         div(style="background-color: {{category.maincolor}};",class="view",flex,horizontal,wrap,center-justified,layout,hero-id="item-{{category.level}}",hero?="{{$.pages.selected === category.level + 1 || $.pages.selected === 0}}")
          template(repeat="{{device in devices}}")
           template(if="{{contain(category.jeedomcategory,device.category)}}")
-           domo-device(id="{{category.code}}{{device.id}}",bgc="{{category.secondcolor}}",nav="{{device.display.parameters.nav}}")
-            img(src="{{device.display.parameters.photo}}",width="48px",height="48px")
-            actions
-             core-collapse(id="collapse{{category.code}}{{device.id}}")
+           template(if="{{hasManyCmds(device.cmds)}}")
+            domo-device(id="{{category.code}}{{device.id}}",bgc="{{category.secondcolor}}",nav="{{device.display.parameters.nav}}")
+             img(src="{{device.display.parameters.photo}}",width="48px",height="48px")
+             actions
+              core-collapse(id="collapse{{category.code}}{{device.id}}")
+               template(repeat="{{control in device.cmds}}")
+                template(if="{{control.isVisible === '1'}}")
+                 template(if="{{control.display.forceReturnLineBefore === '1'}}")
+                  div(layout,horizontal,center-justified)
+                 template(if="{{control.display.parameters.style === 'imgbutton'}}")
+                  paper-fab(class="image",src="{{control.display.parameters.icon}}",onclick="sendURL('/api/jeedom/cmd/{{control.id}}')")
+                 template(if="{{control.display.parameters.style === 'button'}}")
+                  paper-fab(icon="{{control.display.parameters.icon}}",onclick="sendURL('/api/jeedom/cmd/{{control.id}}')")
+                 template(if="{{control.display.parameters.style === 'slide'}}")
+                  paper-fab(icon="{{control.display.parameters.icon}}",onclick="sendURL('/api/device/{{control.id}}/slide/'+document.getElementById('ratings{{category.code}}{{device.id}}{{control.id}}').value)")
+                  section(class="slider")
+                   paper-slider(id="ratings{{category.code}}{{device.id}}{{control.id}}",pin,snaps,min="0",max="{{control.configuration.maxValue}}",step="2",value="0")
+                 template(if="{{control.display.forceReturnLineAfter === '1'}}")
+                  div(layout,horizontal,center-justified)
+             label(flex) {{device.name}}
+           template(if="{{!hasManyCmds(device.cmds)}}")
+            domo-device-light(id="{{category.code}}{{device.id}}",bgc="{{category.secondcolor}}",nav="{{device.display.parameters.nav}}")
+             img(src="{{device.display.parameters.photo}}",width="48px",height="48px")
+             actions
               template(repeat="{{control in device.cmds}}")
                template(if="{{control.isVisible === '1'}}")
-                template(if="{{control.display.forceReturnLineBefore === '1'}}")
-                 div(layout,horizontal,center-justified)
-                template(if="{{control.display.parameters.style === 'imgbutton'}}")
-                 paper-fab(class="image",src="{{control.display.parameters.icon}}",onclick="sendURL('/api/jeedom/cmd/{{control.id}}')")
                 template(if="{{control.display.parameters.style === 'button'}}")
-                 paper-fab(icon="{{control.display.parameters.icon}}",onclick="sendURL('/api/jeedom/cmd/{{control.id}}')")
-                template(if="{{control.display.parameters.style === 'slide'}}")
-                 paper-fab(icon="{{control.display.parameters.icon}}",onclick="sendURL('/api/device/{{control.id}}/slide/'+document.getElementById('ratings{{category.code}}{{device.id}}{{control.id}}').value)")
-                 section(class="slider")
-                  paper-slider(id="ratings{{category.code}}{{device.id}}{{control.id}}",pin,snaps,min="0",max="{{control.configuration.maxValue}}",step="2",value="0")
-                template(if="{{control.display.forceReturnLineAfter === '1'}}")
-                 div(layout,horizontal,center-justified)
-            label(flex) {{device.name}}
+                 paper-fab(icon="{{control.display.parameters.icon}}",mini,onclick="sendURL('/api/jeedom/cmd/{{control.id}}')")
+                 //core-icon-button(icon="{{control.display.parameters.icon}}",onclick="sendURL('/api/jeedom/cmd/{{control.id}}')")
+             label(flex) {{device.name}}
             
    paper-dialog(id="helpdialog",heading="Aide",transition="help",layered="true")
     div(layout,vertical,wrap)
@@ -115,6 +126,18 @@ block main
            return array[value] === "1";
         }
         
+        scope.hasManyCmds = function(array) {
+           //var b = $.inArray(value, array);
+           //return b != -1;
+           var nb=0;
+           for (i=0; i<array.length; i++) {
+               if (array[i].isVisible==="1") {
+                  nb=nb+1;
+               }
+           }
+           return nb > 2;
+        }
+
         scope.selectView = function(e) {
           var cat = e.target.templateInstance.model.category;
           this.$.pages.selected = cat.level;

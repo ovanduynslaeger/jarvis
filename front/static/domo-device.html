@@ -36,6 +36,12 @@
       margin-top: 0.5em;
       margin-bottom: 0.5em;
     }
+    .domo-device-actions-menu paper-fab {
+      background-color: rgba(100, 100, 100, 0);
+      margin-right: 0.5em;
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+    }
 
     core-icon-button {
       color: white;
@@ -43,11 +49,13 @@
 
     </style>
 
-    <core-toolbar onclick="document.querySelector('#collapse{{id}}').toggle()"  style="background-color: {{bgc}};">
+    <core-toolbar style="background-color: {{bgc}};">
       <content select="img"></content>
       <content select="label"></content>
-      <core-icon-button icon="maps:navigation" onclick="toggleDialog('nav')" hidden?="{{nav!='HTPC'}}"/>
-
+      <div class="domo-device-actions-menu" horizontal around-justified layout wrap>
+        <paper-fab icon="more-horiz" mini onclick="document.querySelector('#collapse{{id}}').toggle()"></paper-fab>
+        <paper-fab icon="maps:navigation" mini onclick="toggleDialog('nav')" hidden?="{{nav!='HTPC'}}"></paper-fab>
+      </div>
     </core-toolbar>
     <div class="domo-device-actions" horizontal around-justified layout wrap>
       <content select="actions"></content>
