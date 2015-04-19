@@ -39,7 +39,7 @@ block main
                  template(if="{{control.display.parameters.style === 'button'}}")
                   paper-fab(icon="{{control.display.parameters.icon}}",onclick="sendURL('/api/jeedom/cmd/{{control.id}}')")
                  template(if="{{control.display.parameters.style === 'slide'}}")
-                  paper-fab(icon="{{control.display.parameters.icon}}",onclick="sendURL('/api/device/{{control.id}}/slide/'+document.getElementById('ratings{{category.code}}{{device.id}}{{control.id}}').value)")
+                  paper-fab(icon="{{control.display.parameters.icon}}",onclick="sendURL('/api/jeedom/cmd/{{control.id}}/slide/'+document.getElementById('ratings{{category.code}}{{device.id}}{{control.id}}').value)")
                   section(class="slider")
                    paper-slider(id="ratings{{category.code}}{{device.id}}{{control.id}}",pin,snaps,min="0",max="{{control.configuration.maxValue}}",step="2",value="0")
                  template(if="{{control.display.forceReturnLineAfter === '1'}}")

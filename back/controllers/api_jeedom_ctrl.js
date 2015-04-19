@@ -51,7 +51,7 @@ exports.runDeviceCommandSlide = function(req,res) {
 
 exports.getDevices = function(cb) {
     
-    var url = 'http://localhost/jeedom/core/api/jeeApi.php?request={"jsonrpc":"2.0","method":"object::fullEq","params":{"apikey":"'+jeedomApikey+'"}}';
+    var url = 'http://localhost/jeedom/core/api/myJeeApi.php?request={"jsonrpc":"2.0","method":"object::fullEq","params":{"apikey":"'+jeedomApikey+'"}}';
     request({
       uri: url,
       method: "GET",
@@ -59,6 +59,7 @@ exports.getDevices = function(cb) {
       followRedirect: true,
       maxRedirects: 10
     }, function(error, response, body) {
+        body='{"result": "test"}';
        cb(body);
     });
 
