@@ -59,7 +59,6 @@ exports.getDevices = function(cb) {
       followRedirect: true,
       maxRedirects: 10
     }, function(error, response, body) {
-        body='{"result": "test"}';
        cb(body);
     });
 
