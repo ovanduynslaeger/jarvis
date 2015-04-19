@@ -3,8 +3,8 @@ var apiJeedom = require('../controllers/api_jeedom_ctrl');
 exports.findAll = function (cb) {
 
     apiJeedom.getDevices(function (response) {
-//        var json = JSON.parse(response);
-        var json =
+        var json = JSON.parse(response);
+/*        var json =
 {
     "jsonrpc": "2.0",
     "id": null,
@@ -5753,7 +5753,7 @@ exports.findAll = function (cb) {
             "isEnable": "1",
             "configuration": {
                 "createtime": "2015-03-22 18:50:34",
-                "refreshCron": "*/30 * * * *",
+                "refreshCron": "*\/30 * * * *",
                 "city": "591120",
                 "historize": "0",
                 "fullMobileDisplay": "1",
@@ -6919,6 +6919,7 @@ exports.findAll = function (cb) {
         }
     ]
 };
+*/
         
         cb(null,json.result);
     });
