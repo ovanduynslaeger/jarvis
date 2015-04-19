@@ -26,7 +26,7 @@ block main
          template(repeat="{{device in devices}}")
           template(if="{{contain(category.jeedomcategory,device.category)}}")
            template(if="{{hasManyCmds(device.cmds)}}")
-            domo-device(id="{{category.code}}{{device.id}}",bgc="{{category.secondcolor}}",nav="{{device.display.parameters.nav}}")
+            domo-device(code="{{category.code}}{{device.id}}",bgc="{{category.secondcolor}}",nav="{{device.display.parameters.nav}}")
              img(src="{{device.display.parameters.photo}}",width="48px",height="48px")
              actions
               core-collapse(id="collapse{{category.code}}{{device.id}}")
@@ -46,7 +46,7 @@ block main
                   div(layout,horizontal,center-justified)
              label(flex) {{device.name}}
            template(if="{{!hasManyCmds(device.cmds)}}")
-            domo-device-light(id="{{category.code}}{{device.id}}",bgc="{{category.secondcolor}}",nav="{{device.display.parameters.nav}}")
+            domo-device-light(code="{{category.code}}{{device.id}}",bgc="{{category.secondcolor}}",nav="{{device.display.parameters.nav}}")
              img(src="{{device.display.parameters.photo}}",width="48px",height="48px")
              actions
               template(repeat="{{control in device.cmds}}")

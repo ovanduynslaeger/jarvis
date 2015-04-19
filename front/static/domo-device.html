@@ -53,7 +53,7 @@
       <content select="img"></content>
       <content select="label"></content>
       <div class="domo-device-actions-menu" horizontal around-justified layout wrap>
-        <paper-fab icon="more-horiz" mini onclick="document.querySelector('#collapse{{id}}').toggle()"></paper-fab>
+        <paper-fab icon="more-horiz" mini onclick="document.querySelector('#collapse{{code}}').toggle()"></paper-fab>
         <paper-fab icon="maps:navigation" mini onclick="toggleDialog('nav')" hidden?="{{nav!='HTPC'}}"></paper-fab>
       </div>
     </core-toolbar>
@@ -67,7 +67,7 @@
   <script>
   Polymer({
     publish: {
-      id: '',
+      code: "",
       bgc: '',
       nav: "false"
     }
