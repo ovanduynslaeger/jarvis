@@ -5,8 +5,13 @@ var request = require('request');
 exports.runDeviceCommand = function(req,res) {
     
     var id = req.params.id;
-
-     var url = 'http://localhost/jeedom/core/api/jeeApi.php?request={"jsonrpc":"2.0","id":1,"method":"cmd::execCmd","params":{"apikey":"'+jeedomApikey+'","id": '+id+'}}';
+    
+    var url="";
+    if (isNaN(id)) {
+      url = 'http://localhost/jeedom/core/api/jeeApi.php?request={"jsonrpc":"2.0","id":1,"method":"cmd::execCmd","params":{"apikey":"'+jeedomApikey+'","id": '+eval('process.env.'+id)+'}}';
+    } else {
+      url = 'http://localhost/jeedom/core/api/jeeApi.php?request={"jsonrpc":"2.0","id":1,"method":"cmd::execCmd","params":{"apikey":"'+jeedomApikey+'","id": '+id+'}}';
+    }
     request({
       uri: url,
       method: "GET",

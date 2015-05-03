@@ -9,3 +9,4 @@ Domotic interface (Materiel Design)
 * 2.0.3 Slide api correction
 * 2.0.4 XBMC Navigation correction
 * 2.0.5 Add favorite selection
+* 2.0.6 Externalize navigation
