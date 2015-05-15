@@ -7,6 +7,11 @@ head
  meta(name="author", content=author)
  meta(name="viewport", content='width=device-width, initial-scale=1')
 
+ //JS
+ //script(src="/components/platform/platform.js")
+ script(src="/components/webcomponentsjs/webcomponents.js")
+ script(src='/js/jquery-1.11.1.min.js') 
+ 
  link(rel="import", href="/components/polymer/polymer.html")
 
  // Components
@@ -24,7 +29,6 @@ head
  link(rel="import", href="/components/paper-fab/paper-fab.html")
  link(rel="import", href="/components/core-menu/core-menu.html")
  link(rel="import", href="/components/core-menu/core-submenu.html")
- link(rel="import", href="/components/core-item/core-menu.html")
  link(rel="import", href="/components/core-tooltip/core-tooltip.html")
  link(rel="import", href="/components/core-collapse/core-collapse.html")
  link(rel="import", href="/components/core-drawer-panel/core-drawer-panel.html")
@@ -51,10 +55,6 @@ head
  link(rel="import", href="/domo-device.html")
  link(rel="import", href="/domo-device-light.html")
 
- //JS
- script(src="/components/platform/platform.js")
- script(src='/js/jquery-1.11.1.min.js') 
- 
  block head
 body(unresolved,fullbleed,horizontal,wrap,layout)
  block main
