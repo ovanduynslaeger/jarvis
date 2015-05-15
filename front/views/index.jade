@@ -144,8 +144,6 @@ block main
         scope.selectView = function(e) {
           var cat = e.target.templateInstance.model.category;
           this.$.pages.selected = cat.level;
-          var help = document.getElementById('help');
-          help.show();
         }
   
         scope.back = function() {
@@ -166,7 +164,5 @@ block main
           if (this.lastSelected) {
             this.lastSelected = null;
           }
-          var help = document.getElementById('help');
-          help.hide();
         }
       })
