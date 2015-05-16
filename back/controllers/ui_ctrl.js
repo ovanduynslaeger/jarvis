@@ -3,7 +3,28 @@ var Categories = require('../models/category');
 var async = require('async');
 
 exports.index = function (req, res) {
-    
+    init(req,res);
+};
+
+exports.clearcache = function (req, res) {
+    req.session.devices=null;
+    init(req,res);
+};
+
+
+exports.param = function (req, res) {
+    res.render('parameters.jade', {
+        locals : {
+            title : 'Jarvis'
+            ,description: 'Home'
+            ,author: 'Olivier Vanduynslaeger'
+            ,analyticssiteid: 'XXXXXXX'
+        }
+    });
+};
+
+
+function init(req,res) {
     var cb = function (req,res) {
         res.render('index.jade', {
             locals : {
@@ -17,9 +38,8 @@ exports.index = function (req, res) {
         });
     };
 
-    getDatas(req,res,cb);
-};
-
+    getDatas(req,res,cb);    
+}
 
 function getCategories(req,res,cb) {
 
