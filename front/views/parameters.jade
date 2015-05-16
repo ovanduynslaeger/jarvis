@@ -1,12 +1,11 @@
 extends layout
-block head
- script(src="../components/webcomponentsjs/webcomponents.js")
- link(rel="import",href="../components/paper-checkbox/paper-checkbox.html")
- link(rel="import",href="../components/core-label/core-label.html")
- link(rel="stylesheet", href="/css/parameters.css",shim-shadowdom)
 block main
- section
-  core-label(center,horizontal,layout)
-   div(flex) Simulation de pr&#xe9;sence
-   paper-checkbox(class="blue",for)
-  paper-icon-button(end-justified,icon="close")
+ core-drawer-panel(forceNarrow,id="drawerPanel")
+  core-header-panel(main,mode="waterfall")
+   core-toolbar(class="toolbar")
+    a(href="/")
+     paper-icon-button(id="back",icon="arrow-back")
+    span(flex) Paramètres
+   div(horizontal,flex,center-justified,layout)
+    a(href="/clearcache")
+     paper-button(raised) Vider le cache

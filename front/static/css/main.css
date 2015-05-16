@@ -149,3 +149,27 @@ paper-checkbox.blue::shadow #ink[checked] {
 paper-checkbox.blue::shadow #checkbox.checked {
   border-color: #4285f4;
 }
+
+a:link {
+    color: #FFFFFF;
+}
+
+/* visited link */
+a:visited {
+    color: #FFFFFF;
+}
+
+/* mouse over link */
+a:hover {
+    color: #FFFFFF;
+}
+
+/* selected link */
+a:active {
+    color: #FFFFFF;
+}
+
+paper-button {
+  background-color: #526E9C;
+  margin-top: 3%;
+}

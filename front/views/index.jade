@@ -7,6 +7,7 @@ block main
      span Menu
     core-menu(class="menu")
      core-item(icon="settings",label="Paramètres")
+      a(href="/param")
      core-item(id="help",icon="help",label="Aide",onclick="toggleDialog('help')")
    core-header-panel(main,mode="waterfall")
     core-toolbar(class="toolbar")
@@ -57,7 +58,6 @@ block main
                  template(if="{{control.isVisible === '1'}}")
                   template(if="{{control.display.parameters.style === 'button'}}")
                    paper-fab(icon="{{control.display.parameters.icon}}",mini,onclick="sendURL('/api/jeedom/cmd/{{control.id}}')")
-                   //core-icon-button(icon="{{control.display.parameters.icon}}",onclick="sendURL('/api/jeedom/cmd/{{control.id}}')")
                label(flex) {{device.name}}
             
    paper-dialog(id="helpdialog",heading="Aide",transition="help",layered="true")
