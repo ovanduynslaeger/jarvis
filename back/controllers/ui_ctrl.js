@@ -7,7 +7,7 @@ exports.index = function (req, res) {
 };
 
 exports.clearcache = function (req, res) {
-    req.session.devices=null;
+    req.session.destroy;
     init(req,res);
 };
 
