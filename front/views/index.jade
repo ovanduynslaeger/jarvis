@@ -77,11 +77,13 @@ block main
                     template(if="{{control.type === 'info'}}")
                      core-icon(icon="{{control.display.parameters.icon}}",style="width: 32px; height: 32px;")
                     section(class="slider")
-                     paper-slider(id="ratings{{category.code}}{{device.id}}{{control.id}}",pin,snaps,min="{{control.configuration.minValue}}",max="{{control.configuration.maxValue}}",step="{{control.display.parameters.step}}",value="{{control.display.parameters.defaultValue}}")
+                     //paper-slider(id="ratings{{category.code}}{{device.id}}{{control.id}}",pin,snaps,min="{{control.configuration.minValue}}",max="{{control.configuration.maxValue}}",step="{{control.display.parameters.step}}",value="{{control.display.parameters.defaultValue}}")
+                     paper-slider(id="ratings{{category.code}}{{device.id}}{{control.id}}",pin,snaps,max="{{control.configuration.maxValue}}",step="{{control.display.parameters.step}}",value="{{control.display.parameters.defaultValue}}")
                    template(if="{{control.display.parameters.style === 'color'}}")
                     template(if="{{control.type === 'info'}}")
                      core-icon(icon="{{control.display.parameters.icon}}",style="width: 32px; height: 32px;")
-                    input(id="color",type="color")
+                     //Remove # car in code color
+                    input(id="color{{category.code}}{{device.id}}{{control.id}}",type="color",onchange="sendURL('/api/jeedom/cmd/{{control.id}}/color/'+document.getElementById('color{{category.code}}{{device.id}}{{control.id}}').value.substring(1))")
                    template(if="{{control.display.forceReturnLineAfter === '1'}}")
                     div(layout,horizontal,center-justified)
                label(flex) {{device.name}}
@@ -128,15 +130,8 @@ block main
     paper-icon-button(icon="close",affirmative) 
    
    script.
-      function getStep(min,max) {
-        alert(min);
-        alert(max);
-        alert((max-min) / 10);
-        return (max-min) / 10;
-      }
-      
       function sendURL(url) {
-         //alert(url);
+         alert(url);
          $.get(url,function(data,status) {
          });
       }
