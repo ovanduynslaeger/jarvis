@@ -71,7 +71,7 @@ exports.runDeviceCommandColor = function(req,res) {
            console.log(response);
            res.send (error);
         } else {
-           res.send('{ "data" : { "cmdId": "'+id+'", "slider": "'+slider+'"}');
+           res.send('{ "data" : { "cmdId": "'+id+'", "color": "'+color+'"}');
         }
     });
  
