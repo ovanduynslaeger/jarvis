@@ -1,34 +1,17 @@
-<link rel="import" href="components/polymer/polymer.html">
-<link rel="import" href="components/core-icon-button/core-icon-button.html">
-<link rel="import" href="components/core-icons/core-icons.html">
-<link rel="import" href="components/paper-fab/paper-fab.html">
-<link rel="import" href="components/core-toolbar/core-toolbar.html">
-<link rel="import" href="components/core-collapse/core-collapse.html">
-
-<polymer-element name="domo-device">
-  <template>
+<dom-module id="domo-device">
     <style>
-
-   @media only screen and (max-width:400px){
-    :host {
-      width: 100%;
-    }
-  }
 
     :host {
       margin: 3px;
       width: 400px;
     }
-     core-toolbar {
-      background-color: dodgerblue;
+    :host paper-toolbar {
       color: white;
       font-size: 1.2rem;
     }
-    .domo-device-header {
-      margin-bottom: 10px;
-    }
     .domo-device-actions {
       background-color: white;
+      padding-left: 8px;
     }
     .domo-device-actions ::content paper-fab {
       background-color: DimGray;
@@ -43,35 +26,88 @@
       margin-bottom: 0.5em;
     }
 
-    core-icon-button {
+    iron-icon-button {
       color: white;
     }
-
+    
+    html /deep/ iron-collapse {
+      border: 0px solid #ccc;
+      padding: 8px;
+    }
     </style>
 
-    <core-toolbar style="background-color: {{bgc}};">
-      <content select="img"></content>
-      <content select="label"></content>
-      <div class="domo-device-actions-menu" horizontal around-justified layout wrap>
-        <paper-fab icon="more-horiz" mini onclick="document.querySelector('#collapse{{code}}').toggle()"></paper-fab>
-        <paper-fab icon="maps:navigation" mini onclick="toggleDialog('nav')" hidden?="{{nav!='HTPC'}}"></paper-fab>
-        <!-- <input id="color" type="color" />        -->
+  <template>
+      <paper-toolbar id="ptb">
+        <img src="{{device.display.parameters.photo}}" width="48px" height="48px"/>
+        <div class="flex">{{device.name}}</div>
+        <template is="dom-if" if="{{manyControl}}">
+         <div class="domo-device-actions-menu horizontal around-justified layout wrap">
+          <paper-fab class="paper-fab" id="more" icon="more-horiz" mini on-tap="handleClick" ></paper-fab>
+          <template is="dom-if" if="{{navAvailable(device.display.parameters.nav)}}">
+            <paper-fab class="paper-fab" id="nav" icon="maps:navigation" mini on-tap="toggleDialogNav"/>
+          </template>              
+         </div>
+       </template>
+        <template is="dom-if" if="{{!manyControl}}">
+          <template is="dom-repeat" items="{{device.cmds}}" as="control">
+           <domo-control control="{{control}}" bgc="{{bgc}}" mini="true"/>
+          </template>
+        </template>              
+      </paper-toolbar>
+      <div class="domo-device-actions horizontal around-justified layout wrap">
+        <template is="dom-if" if="{{manyControl}}">
+          <iron-collapse id="collapse">
+            <template is="dom-repeat" items="{{device.cmds}}" as="control">
+             <domo-control control="{{control}}" bgc="{{bgc}}"/>
+            </template>
+          </iron-collapse>
+        </template>              
       </div>
-    </core-toolbar>
-    <div class="domo-device-actions" horizontal around-justified layout wrap>
-      <content select="actions"></content>
-    </div>
+  </template>    
 
-
-
-  </template>
   <script>
   Polymer({
-    publish: {
-      code: "",
-      bgc: '',
-      nav: "false"
-    }
+      is: "domo-device",
+      properties: {
+                device: Object,
+                bgc: String,
+                manyControl: {
+                  type: Boolean,
+                  computed: 'hasManyCmds(device.cmds)'
+                  }
+                },
+      handleClick: function() {
+        this.querySelector('#collapse').toggle();
+      },
+      navAvailable: function(nav) {
+        return (nav=='HTPC');
+      },
+      ready: function() {
+        var ptb=this.querySelector('#ptb');
+        if (ptb!=null) ptb.style.backgroundColor=this.bgc;
+      },
+      hasManyCmds: function(array) {
+         var i=0;
+         var nb=0;
+         for (i=0; i<array.length; i++) {
+             if (array[i].isVisible=="1") {
+                nb=nb+1;
+             }
+         }
+         return nb > 2;
+      },
+      toggleDialogNav: function() {
+         var node = document.querySelector('nav-dialog');
+         if (node) {
+          if (node.opened) {
+            node.hide();
+          } else {
+            node.show();
+          }
+        }}
+
   });
+  
   </script>
-</polymer-element>
+  
+</dom-module>

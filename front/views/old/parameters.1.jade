@@ -1,0 +1,12 @@
+extends layout.1
+block head
+block main
+ paper-drawer-panel(force-narrow)
+  paper-header-panel(main,mode="waterfall")
+   paper-toolbar(class="toolbar")
+    a(href="/")
+     paper-icon-button(id="back",icon="arrow-back")
+    span(class="flex") Paramètres
+   div(class="horizontal flex center-justified layout")
+    a(href="/clearcache")
+     paper-button(raised) Vider le cache

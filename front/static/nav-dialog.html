@@ -1,0 +1,119 @@
+<dom-module id="nav-dialog">
+
+  <style>
+
+    :host {
+      margin-left: auto;
+      margin-right: auto;      
+    }
+
+    :host #mynav-dialog {
+      padding-top: 16px;
+      background: white;
+      color: black;
+      height: 480px;
+      position: fixed;
+      width: 280px;
+      left: 20px;
+    }
+    
+    paper-fab {
+      margin-right: 0.5em;
+      margin-top: 0.5em; 
+      margin-bottom: 0.5em; 
+      background-color: DodgerBlue      
+    }
+    
+  </style>
+
+  <template>
+
+    <paper-dialog id="mynav-dialog" class="center layout" modal>
+        <div class="vertical center layout" style="margin-top: 0">
+         <paper-fab icon="editor:vertical-align-top" on-tap="_sendURLHTPC_PAGEUP"></paper-fab>
+         <paper-fab icon="expand-less" on-tap="_sendURLHTPC_UP"></paper-fab>
+         <div class="horizontal center layout wrap">
+          <paper-fab icon="chevron-left" on-tap="_sendURLHTPC_LEFT"></paper-fab>
+          <paper-fab icon="done" on-tap="_sendURLHTPC_DONE"></paper-fab>
+          <paper-fab icon="chevron-right" on-tap="_sendURLHTPC_RIGHT"></paper-fab>
+         </div>
+         <paper-fab icon="expand-more" on-tap="_sendURLHTPC_DOWN"></paper-fab>
+         <paper-fab icon="editor:vertical-align-bottom" on-tap="_sendURLHTPC_PAGEDOWN"></paper-fab>
+         <div class="horizontal ,around-justified layout wrap">
+          <paper-fab mini icon="reply" on-tap="_sendURLHTPC_BACK"></paper-fab>
+          <paper-fab hidden></paper-fab>
+          <paper-fab mini icon="home" on-tap="_sendURLHTPC_HOME"></paper-fab>
+          <paper-fab hidden/></paper-fab>
+          <paper-fab mini icon="menu" on-tap="_sendURLHTPC_MENU"></paper-fab>
+         </div>
+        </div>
+        <paper-icon-button icon="clear" on-tap="hide"></paper-icon-button>
+    </paper-dialog>
+    
+  </template>
+
+</dom-module>
+
+<script>
+
+  Polymer({
+
+    is: 'nav-dialog',
+
+    properties: {
+      opened: {
+        type: Boolean
+      }},
+
+
+/*    _sendURL: function(e) {
+      sendURL('/api/jeedom/cmd/'+e.target.parentNode.parentNode.id);
+    },
+    */
+
+    _sendURLHTPC_PAGEUP: function() {
+      sendURL('/api/jeedom/cmd/HTPC_PAGEUP');
+    },
+    _sendURLHTPC_UP: function() {
+      sendURL('/api/jeedom/cmd/HTPC_UP');
+    },
+    _sendURLHTPC_LEFT: function() {
+      sendURL('/api/jeedom/cmd/HTPC_LEFT');
+    },
+    _sendURLHTPC_RIGHT: function() {
+      sendURL('/api/jeedom/cmd/HTPC_RIGHT');
+    },
+    _sendURLHTPC_DOWN: function() {
+      sendURL('/api/jeedom/cmd/HTPC_DOWN');
+    },
+    _sendURLHTPC_DONE: function() {
+      sendURL('/api/jeedom/cmd/HTPC_DONE');
+    },
+    _sendURLHTPC_PAGEDOWN: function() {
+      sendURL('/api/jeedom/cmd/HTPC_PAGEDOWN');
+    },
+    _sendURLHTPC_BACK: function() {
+      sendURL('/api/jeedom/cmd/HTPC_BACK');
+    },
+    _sendURLHTPC_HOME: function() {
+      sendURL('/api/jeedom/cmd/HTPC_HOME');
+    },
+    _sendURLHTPC_MENU: function() {
+      sendURL('/api/jeedom/cmd/HTPC_MENU');
+    },
+    
+    show: function() {
+      this.opened = true;
+      var node = document.querySelector('#mynav-dialog');
+      node.style.display = 'inline-block';
+    },
+
+    hide: function() {
+      this.opened = false;
+      var node = document.querySelector('#mynav-dialog');
+      node.style.display = 'none';
+    }
+
+  });
+
+</script>

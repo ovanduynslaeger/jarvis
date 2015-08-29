@@ -1,0 +1,62 @@
+<dom-module id="domo-toolbar">
+    <style>
+    
+    .title {
+      padding: 0;
+    }
+    
+    paper-icon-button {
+        padding: 0px;
+        margin-right: 12px;
+    }
+    
+    
+    </style>
+
+  <template>
+   <paper-icon-button icon="menu" on-tap="toggleHeaderPanel"></paper-icon-button>
+   <div class="flex title">Jarvis</div>
+   <!-- <paper-icon-button icon="star" on-tap="toggleFavorite"></paper-icon-button> -->
+   <template is="dom-if" if="{{selected}}">
+      <paper-icon-button icon="arrow-back" on-tap="back"></paper-icon-button>
+   </template>        
+  </template>
+
+  <script>
+  Polymer({
+      is: "domo-toolbar",
+      properties: {
+                selected: {
+                  type: Number,
+                  value: 0
+                }
+/*                ,
+                favorite: {
+                  type: Boolean,
+                  notify: true
+                }
+*/                },
+/*    toggleFavorite: function(e) {
+      var target = e.target;
+      if (favorite) {
+          target.icon="star";
+      } else {
+          target.icon="star-border";
+      }
+      favorite=!favorite;
+    },
+    */
+    back: function() {
+      var tmain = document.getElementById('tmain');
+      tmain.selected = 0;
+    },
+    toggleHeaderPanel: function() {
+      var drawerPanel = document.getElementById('drawerPanel');
+      drawerPanel.togglePanel();
+    }
+
+  });
+  
+  </script>
+  
+</dom-module>

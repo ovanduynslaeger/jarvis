@@ -12,9 +12,11 @@ module.exports = function (app) {
 
 	app.get('/', ui_ctrl.index);
 
-	app.get('/param', ui_ctrl.param);
+//	app.get('/param', ui_ctrl.param);
 
-	app.get('/clearcache', ui_ctrl.clearcache);
+//	app.get('/test', ui_ctrl.test);
+
+//	app.get('/clearcache', ui_ctrl.clearcache);
 
     app.get('/api/jeedom/cmd/:id', api_ctrl.runDeviceCommand);
 

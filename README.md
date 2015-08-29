@@ -12,3 +12,4 @@ Domotic interface (Materiel Design)
 * 2.0.6 Externalize navigation
 * 2.0.7 Add socketio node_modules
 * 2.0.8 Add color style
+* 3.0.0 Polymer 1.0.0

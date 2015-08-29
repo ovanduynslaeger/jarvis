@@ -1,0 +1,96 @@
+<dom-module id="domo-control">
+  
+    <style>
+
+      paper-fab {
+        background-color: rgba(100, 100, 100, 0);
+        margin-right: 0.25em;
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+      }
+    
+      .image {
+        padding: 0px;
+      }
+  
+      paper-slider {
+        @apply(--layout-self-center);
+      }
+    
+        paper-slider {
+        --paper-slider-knob-color: DimGray;
+        --paper-slider-active-color: DimGray;
+        --paper-slider-pin-color: DimGray;
+        width: 250px;
+        padding-left: 5px;
+      }
+    
+    </style>
+
+  <template hidden="{{!isVisible(control.isVisible)}}">
+    <template is="dom-if" if="{{isReturnLine(control.display.forceReturnLineBefore)}}">
+      <div class="layout horizontal center-justified"/>
+    </template>
+    <template is="dom-if" if="{{isButtonMini(control.display.parameters.style)}}">
+      <paper-fab icon="{{control.display.parameters.icon}}" mini on-tap="handleClick"/>
+    </template>  
+    <template is="dom-if" if="{{isButton(control.display.parameters.style)}}">
+      <paper-fab icon="{{control.display.parameters.icon}}" on-tap="handleClick"/>
+    </template>  
+    <template is="dom-if" if="{{isImageButton(control.display.parameters.style)}}">
+      <paper-fab class="image" src="{{control.display.parameters.icon}}" on-tap="handleClick" hidden="{{!isImageButton(control.display.parameters.style)}}"/>
+    </template>  
+    <template is="dom-if" if="{{isColor(control.display.parameters.style)}}">
+      <input id="{{control.id}}" type="color" hidden="{{!isColor(control.display.parameters.style)}}"/>
+    </template>  
+    <template is="dom-if" if="{{isSlide(control.display.parameters.style)}}">
+      <div class="slider layout horizontal"/>
+       <paper-fab icon="{{control.display.parameters.icon}}" on-tap="handleClick"></paper-fab>
+       <paper-slider id="{{control.id}}" pin snaps max="{{control.configuration.maxValue}}" step="{{control.display.parameters.step}}" value="{{control.display.parameters.defaultValue}}"></paper-slider>
+      </div>
+    </template>  
+    <template is="dom-if" if="{{isReturnLine(control.display.forceReturnLineAfter)}}">
+      <div class="layout horizontal center-justified"/>
+    </template>
+  </template>
+
+
+  <script>
+  Polymer({
+      is: "domo-control",
+      properties: {
+                control: Object,
+                mini: { 
+                  type: Boolean,
+                  value: false
+                }
+                },
+      isVisible: function(visible) {
+        return (visible=='1');
+      },
+      handleClick: function() {
+        sendURL('/api/jeedom/cmd/'+this.control.id);
+      },
+      isReturnLine: function(line) {
+        return (line=='1');
+      },
+      isButton: function(style) {
+        return (style=='button') && (!this.mini);
+      },
+      isButtonMini: function(style) {
+        return (style=='button') && (this.mini);
+      },
+      isImageButton: function(style) {
+        return (style=='imgbutton');
+      },
+      isSlide: function(style) {
+        return (style=='slide');
+      },
+      isColor: function(style) {
+        return (style=="color");
+      }
+  });
+  
+  </script>
+  
+</dom-module>

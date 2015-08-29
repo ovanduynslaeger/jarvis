@@ -1,0 +1,124 @@
+<dom-module id="help-dialog">
+
+  <style>
+
+    :host {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    :host #myhelp-dialog {
+      padding-top: 16px;
+      background: white;
+      color: black;
+      height: 400px;
+      position: fixed;
+      width: 285px;
+      left: 20px;
+    }
+    
+    paper-icon-item {
+      padding-bottom: 5%;
+    }
+
+    iron-icon {
+      padding-right: 8%;
+    }
+    
+  </style>
+
+  <template>
+    
+    <paper-dialog id="myhelp-dialog" class="center layout" modal>
+        <div class="vertical left layout" style="margin-top: 0">
+        <paper-icon-item>
+          <iron-icon icon="menu" item-icon></iron-icon> Menu
+        </paper-icon-item>
+        <paper-icon-item>
+          <iron-icon icon="radio-button-checked" item-icon></iron-icon> Allumer
+        </paper-icon-item>
+        <paper-icon-item>
+          <iron-icon icon="radio-button-unchecked" item-icon></iron-icon> Eteindre
+        </paper-icon-item>
+        <paper-icon-item>
+          <iron-icon icon="hardware:tv" item-icon></iron-icon> Son PS3 vers ampli
+        </paper-icon-item>
+        <paper-icon-item>
+          <iron-icon icon="image:panorama-horizontal" item-icon></iron-icon> Son télévision vers ampli
+        </paper-icon-item>
+        <paper-icon-item>
+          <iron-icon icon="reply" item-icon></iron-icon> Retour
+        </paper-icon-item>
+        <paper-icon-item>
+          <iron-icon icon="done" item-icon></iron-icon> Valider
+        </paper-icon-item>
+        <paper-icon-item>
+          <iron-icon icon="editor:insert-comment" item-icon></iron-icon> Activer les sous-titres
+        </paper-icon-item>
+        <paper-icon-item>
+          <iron-icon icon="editor:mode-comment" item-icon></iron-icon> Désactiver les sous-titres
+        </paper-icon-item>
+        </div>
+        <paper-icon-button icon="clear" on-tap="hide"></paper-icon-button>
+    </paper-dialog>
+    
+  </template>
+
+</dom-module>
+
+<script>
+
+  Polymer({
+
+    is: 'help-dialog',
+
+    behaviors: [
+      Polymer.NeonAnimationRunnerBehavior
+    ],
+
+    properties: {
+      opened: {
+        type: Boolean
+      }},
+
+      animationConfig: {
+        type: Object,
+        value: function() {
+          return {
+            'entry': [{
+              name: 'scale-up-animation',
+              node: this
+            }],
+            'exit': [{
+              name: 'fade-out-animation',
+              node: this
+            }]
+          }
+        }
+      },
+    listeners: {
+      'neon-animation-finish': '_onAnimationFinish'
+    },
+
+    _onAnimationFinish: function() {
+      if (!this.opened) {
+        var node = document.querySelector('#myhelp-dialog');
+        node.style.display = 'none';
+      }
+    },
+
+    show: function() {
+      this.opened = true;
+      var node = document.querySelector('#myhelp-dialog');
+      node.style.display = 'inline-block';
+    },
+
+    hide: function() {
+      this.opened = false;
+      var node = document.querySelector('#myhelp-dialog');
+      node.style.display = 'none';
+    }
+
+  });
+
+</script>

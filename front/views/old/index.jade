@@ -1,0 +1,212 @@
+extends layout
+block head
+ link(rel="import", href="/components/core-icon-button/core-icon-button.html")
+ //link(rel="import", href="/components/core-toolbar/core-toolbar.html") 
+ link(rel="import", href="/components/core-item/core-item.html") 
+ link(rel="import", href="/components/core-animated-pages/core-animated-pages.html")
+ //link(rel="import", href="/components/core-icons/core-icons.html")
+ link(rel="import", href="/components/core-icons/av-icons.html")
+ link(rel="import", href="/components/core-icons/hardware-icons.html")
+ link(rel="import", href="/components/core-icons/image-icons.html")
+ link(rel="import", href="/components/core-icons/communication-icons.html")
+ link(rel="import", href="/components/core-icons/editor-icons.html")
+ link(rel="import", href="/components/core-icons/device-icons.html")
+ link(rel="import", href="/components/core-icons/maps-icons.html")
+ link(rel="import", href="/components/paper-fab/paper-fab.html")
+ link(rel="import", href="/components/core-menu/core-menu.html")
+ link(rel="import", href="/components/core-menu/core-submenu.html")
+ link(rel="import", href="/components/core-tooltip/core-tooltip.html")
+ link(rel="import", href="/components/core-collapse/core-collapse.html")
+ //link(rel="import", href="/components/core-drawer-panel/core-drawer-panel.html")
+ //link(rel="import", href="/components/core-header-panel/core-header-panel.html")
+ link(rel="import", href="/components/paper-dialog/paper-dialog.html")
+ //link(rel="import", href="/components/paper-button/paper-button.html")
+ link(rel="import", href="/components/paper-dialog/paper-dialog-transition.html") 
+ link(rel="import", href="/components/paper-slider/paper-slider.html")
+ link(rel="import", href="/components/paper-menu-button/paper-menu-button.html")
+ link(rel="import", href="/components/paper-dropdown/paper-dropdown.html")
+ //link(rel="import", href="/components/paper-icon-button/paper-icon-button.html")
+ link(rel="import", href="/domo-device.html")
+ link(rel="import", href="/domo-device-light.html")
+block main
+ template(is="auto-binding")
+  core-drawer-panel(forceNarrow,id="drawerPanel")
+   core-header-panel(drawer,mode="waterfall",class="menu")
+    core-toolbar(class="toolbar")
+     span Menu
+    core-menu(class="menu")
+     core-item(icon="settings",label="Paramètres")
+      a(href="/param")
+     core-item(id="help",icon="help",label="Aide",onclick="toggleDialog('help')")
+   core-header-panel(main,mode="waterfall")
+    core-toolbar(class="toolbar")
+     paper-icon-button(id="navicon",icon="menu",onclick="toggleHeaderPanel()")
+     span(flex) Jarvis
+     paper-icon-button(icon="{{favorite?'star':'star-outline'}}",on-tap="{{toggleFavorite}}")
+     template(if="{{$.pages.selected != 0}}")
+      paper-icon-button(icon="arrow-back",on-tap="{{back}}")
+    div(class="content)
+     core-animated-pages(id="pages",flex selected="0",on-core-animated-pages-transition-end="{{transitionend}}",transitions="cross-fade-all hero-transition")
+      div(id="container")
+       template(repeat="{{category in items}}")
+        div(class="tile",style="background-color: {{category.secondcolor}};",vertical,center-justified,layout,hero-id="item-{{category.level}}",hero?="{{$.pages.selected === category.level +1 || lastSelected === category.level + 1}",on-tap="{{selectView}}")
+         img(src="{{category.photo}}")
+      template(repeat="{{category in items}}")
+       section(vertical,layout,style="display: block")
+        div(style="background-color: {{category.maincolor}};",class="view",flex,horizontal,wrap,center-justified,layout,hero-id="item-{{category.level}}",hero?="{{$.pages.selected === category.level + 1 || $.pages.selected === 0}}")
+         template(repeat="{{device in devices}}")
+          template(if="{{!(device.category === null)}}")
+           template(if="{{contain(category.jeedomcategory,device.category)}}")
+            template(if="{{hasManyCmds(device.cmds)}}")
+             template(if="{{(favorite && device.display.parameters.favorite === 'true') || (!favorite)}}")
+              domo-device(code="{{category.code}}{{device.id}}",bgc="{{category.secondcolor}}",nav="{{device.display.parameters.nav}}")
+               img(src="{{device.display.parameters.photo}}",width="48px",height="48px")
+               actions
+                core-collapse(id="collapse{{category.code}}{{device.id}}")
+                 template(repeat="{{control in device.cmds}}")
+                  template(if="{{control.isVisible === '1'}}")
+                   template(if="{{control.display.forceReturnLineBefore === '1'}}")
+                    div(layout,horizontal,center-justified)
+                   template(if="{{control.display.parameters.style === 'imgbutton'}}")
+                    paper-fab(class="image",src="{{control.display.parameters.icon}}",onclick="sendURL('/api/jeedom/cmd/{{control.id}}')")
+                   template(if="{{control.display.parameters.style === 'button'}}")
+                    paper-fab(icon="{{control.display.parameters.icon}}",onclick="sendURL('/api/jeedom/cmd/{{control.id}}')")
+                   template(if="{{control.display.parameters.style === 'slide'}}")
+                    template(if="{{control.type === 'action'}}")
+                     paper-fab(icon="{{control.display.parameters.icon}}",onclick="sendURL('/api/jeedom/cmd/{{control.id}}/slide/'+document.getElementById('ratings{{category.code}}{{device.id}}{{control.id}}').value)")
+                    template(if="{{control.type === 'info'}}")
+                     core-icon(icon="{{control.display.parameters.icon}}",style="width: 32px; height: 32px;")
+                    section(class="slider")
+                     //paper-slider(id="ratings{{category.code}}{{device.id}}{{control.id}}",pin,snaps,min="{{control.configuration.minValue}}",max="{{control.configuration.maxValue}}",step="{{control.display.parameters.step}}",value="{{control.display.parameters.defaultValue}}")
+                     paper-slider(id="ratings{{category.code}}{{device.id}}{{control.id}}",pin,snaps,max="{{control.configuration.maxValue}}",step="{{control.display.parameters.step}}",value="{{control.display.parameters.defaultValue}}")
+                   template(if="{{control.display.parameters.style === 'color'}}")
+                    template(if="{{control.type === 'info'}}")
+                     core-icon(icon="{{control.display.parameters.icon}}",style="width: 32px; height: 32px;")
+                     //Remove # car in code color
+                    input(id="color{{category.code}}{{device.id}}{{control.id}}",type="color",onchange="sendURL('/api/jeedom/cmd/{{control.id}}/color/'+document.getElementById('color{{category.code}}{{device.id}}{{control.id}}').value.substring(1))")
+                   template(if="{{control.display.forceReturnLineAfter === '1'}}")
+                    div(layout,horizontal,center-justified)
+               label(flex) {{device.name}}
+            template(if="{{!hasManyCmds(device.cmds)}}")
+             template(if="{{(favorite && device.display.parameters.favorite === 'true') || (!favorite)}}")
+              domo-device-light(code="{{category.code}}{{device.id}}",bgc="{{category.secondcolor}}",nav="{{device.display.parameters.nav}}")
+               img(src="{{device.display.parameters.photo}}",width="48px",height="48px")
+               actions
+                template(repeat="{{control in device.cmds}}")
+                 template(if="{{control.isVisible === '1'}}")
+                  template(if="{{control.display.parameters.style === 'button'}}")
+                   paper-fab(icon="{{control.display.parameters.icon}}",mini,onclick="sendURL('/api/jeedom/cmd/{{control.id}}')")
+               label(flex) {{device.name}}
+            
+   paper-dialog(id="helpdialog",heading="Aide",transition="help",layered="true")
+    div(layout,vertical,wrap)
+     core-item(icon="menu",label="Menu")
+     core-item(icon="radio-button-on",label="Allumer")
+     core-item(icon="radio-button-off",label="Eteindre")
+     core-item(icon="hardware:tv",label="Son PS3 vers ampli")
+     core-item(icon="image:panorama-horizontal",label="Son télévision vers ampli")
+     core-item(icon="reply",label="Retour")
+     core-item(icon="done",label="Valider")
+     core-item(icon="communication:message",label="Activer les sous-titres")
+     core-item(icon="communication:messenger",label="Désactiver les sous-titres")
+    paper-icon-button(icon="close",affirmative) 
+  
+   paper-dialog(id="navdialog",transition="nav",layered="true")
+    div(vertical,center,layout,wrap)
+     paper-fab(icon="editor:vertical-align-top",onclick="sendURL('/api/jeedom/cmd/HTPC_PAGEUP')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
+     paper-fab(icon="expand-less",onclick="sendURL('/api/jeedom/cmd/HTPC_UP')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
+     div(horizontal,center,layout,wrap)
+      paper-fab(icon="chevron-left",onclick="sendURL('/api/jeedom/cmd/HTPC_LEFT')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
+      paper-fab(icon="done",onclick="sendURL('/api/jeedom/cmd/HTPC_DONE')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
+      paper-fab(icon="chevron-right",onclick="sendURL('/api/jeedom/cmd/HTPC_RIGHT')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
+     paper-fab(icon="expand-more",onclick="sendURL('/api/jeedom/cmd/HTPC_DOWN')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
+     paper-fab(icon="editor:vertical-align-bottom",onclick="sendURL('/api/jeedom/cmd/HTPC_PAGEDOWN')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
+     div(horizontal,around-justified,layout,wrap)
+      paper-fab(mini,icon="reply",onclick="sendURL('/api/jeedom/cmd/HTPC_BACK')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
+      paper-fab(hidden)
+      paper-fab(mini,icon="home",onclick="sendURL('/api/jeedom/cmd/HTPC_HOME')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
+      paper-fab(hidden)
+      paper-fab(mini,icon="menu",onclick="sendURL('/api/jeedom/cmd/HTPC_MENU')",style="margin-right: 0.5em;margin-top: 0.5em; margin-bottom: 0.5em; background-color: DodgerBlue")
+    paper-icon-button(icon="close",affirmative) 
+   
+   script.
+      function sendURL(url) {
+         alert(url);
+         $.get(url,function(data,status) {
+         });
+      }
+      
+      function toggleHeaderPanel() {
+        var drawerPanel = document.getElementById('drawerPanel');
+        drawerPanel.togglePanel();
+      }
+     
+      function toggleDialog(transition) {
+        var dialog = document.querySelector('paper-dialog[transition=' + transition + ']');
+        dialog.toggle();
+      }
+  
+      addEventListener('template-bound', function(e) {
+       var scope = e.target;
+       var items = [];
+       var devices = [];
+
+       //var ratings = document.querySelector('#ratings');
+  
+        for (var cat in !{categories}) {
+           items.push(!{categories}[cat]);
+        }
+        scope.items = items;
+        
+        for (var dev in !{devices}) {
+           devices.push(!{devices}[dev]);
+        }
+        scope.devices = devices;
+  
+        scope.contain = function(value,array) {
+           //var b = $.inArray(value, array);
+           //return b != -1;
+           //alert(array["light"]);
+           return array[value] === "1";
+        }
+        
+        scope.hasManyCmds = function(array) {
+           //var b = $.inArray(value, array);
+           //return b != -1;
+           var nb=0;
+           for (i=0; i<array.length; i++) {
+               if (array[i].isVisible==="1") {
+                  nb=nb+1;
+               }
+           }
+           return nb > 2;
+        }
+
+        scope.selectView = function(e) {
+          var cat = e.target.templateInstance.model.category;
+          this.$.pages.selected = cat.level;
+        }
+  
+        scope.back = function() {
+        
+          this.lastSelected = this.$.pages.selected;
+          //if (this.lastSelected === 0) toggleDialog('help')
+          this.$.pages.selected = 0;
+        }
+  
+        scope.toggleFavorite = function() {
+          if (scope.favorite) {
+           scope.favorite = false;
+          } else {
+           scope.favorite = true;
+          }
+        }
+
+        scope.transitionend = function() {
+          if (this.lastSelected) {
+            this.lastSelected = null;
+          }
+        }
+      })
+      
+      

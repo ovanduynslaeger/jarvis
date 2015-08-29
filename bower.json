@@ -1,0 +1,44 @@
+{
+  "name": "jarvis",
+  "version": "2.0.8",
+  "homepage": "https://github.com/ovanduynslaeger/jarvis",
+  "authors": [
+    "Olivier Vanduynslaeger <o.vanduynslaeger@gmail.com>"
+  ],
+  "description": "Automation project",
+  "main": "server.js",
+  "keywords": [
+    "automation",
+    "jarvis",
+    "diy"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.0.0",
+    "paper-dialog": "PolymerElements/paper-dialog#~1.0.1",
+    "paper-button": "PolymerElements/paper-button#~1.0.3",
+    "paper-icon-button": "PolymerElements/paper-icon-button#~1.0.3",
+    "paper-fab": "PolymerElements/paper-fab#~1.0.3",
+    "paper-menu-button": "PolymerElements/paper-menu-button#~1.0.0",
+    "paper-slider": "PolymerElements/paper-slider#~1.0.3",
+    "iron-icons": "PolymerElements/iron-icons#~1.0.3",
+    "paper-drawer-panel": "PolymerElements/paper-drawer-panel#~1.0.3",
+    "paper-header-panel": "PolymerElements/paper-header-panel#~1.0.3",
+    "paper-toolbar": "PolymerElements/paper-toolbar#~1.0.4",
+    "font-roboto": "PolymerElements/font-roboto#~1.0.1",
+    "paper-menu": "PolymerElements/paper-menu#~1.0.1",
+    "paper-tooltip": "PolymerElements/paper-tooltip#~1.0.1",
+    "paper-item": "PolymerElements/paper-item#~1.0.2",
+    "iron-collapse": "PolymerElements/iron-collapse#~1.0.2",
+    "iron-dropdown": "PolymerElements/iron-dropdown#~1.0.3",
+    "neon-animation": "PolymerElements/neon-animation#~1.0.6",
+    "iron-flex-layout": "PolymerElements/iron-flex-layout#~1.0.2"
+  }
+}

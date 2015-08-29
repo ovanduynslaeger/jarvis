@@ -1,0 +1,55 @@
+<dom-module id="domo-menu">
+    <style>
+
+    .toolbar {
+        color: white;
+        background-color: #526E9C;
+    }
+    
+    .menu {
+        color: black;
+        background-color: #E5E5E5;
+    }
+    
+    iron-icon {
+      margin: 0 4px 0 4px; 
+    }
+
+    </style>
+
+  <template>
+     <paper-toolbar class="toolbar">
+      <div>{{menu}}</div>
+     </paper-toolbar>
+     <paper-menu class="menu">
+      <paper-item>
+       <iron-icon icon="settings"></iron-icon>
+       <paper-item-body>Paramètres</paper-item-body>
+      </paper-item>
+      <paper-item id="help" on-tap="toggleDialogHelp">
+       <iron-icon icon="help"></iron-icon>  
+       <paper-item-body>Aide</paper-item-body>
+      </paper-item>
+     </paper-menu>
+  </template>
+
+  <script>
+  Polymer({
+      is: "domo-menu",
+      properties: {
+                menu: String
+                },
+      toggleDialogHelp: function() {
+         var node = document.querySelector('help-dialog');
+         if (node) {
+          if (node.opened) {
+            node.hide();
+          } else {
+            node.show();
+          }
+        }}
+  });
+  
+  </script>
+  
+</dom-module>

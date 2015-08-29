@@ -1,0 +1,66 @@
+<dom-module id="domo-page">
+
+  <style>
+
+    .view {
+        overflow: auto;
+        padding-top: 3px;
+        height: 87vh;
+    }
+
+
+}
+
+  </style>
+
+
+    <template>
+        <neon-animatable>
+         <section id="catsection" class="vertical layout">
+          <div class="view horizontal wrap center-justified layout">
+           <template is="dom-repeat" items="{{devices}}" as="device">
+            <template is="dom-if" if="{{isVisible(device,category.jeedomcategory)}}">
+             <domo-device hidden$="{{fav}}" device="{{device}}" bgc="{{category.secondcolor}}"></domo-device device>
+            </template>
+           </template>
+          </div>
+         </section>
+        </neon-animatable>
+     </template>
+ 
+
+</dom-module>
+
+<script>
+
+  Polymer({
+
+    is: 'domo-page',
+      properties: {
+        category: Object,
+        devices: Array,
+        selected: Number,
+        fav: {
+          type: Boolean,
+          computed: 'isFavorite()'
+        }
+      },
+     ready: function() {
+        var ptb=this.querySelector('#catsection');
+        if (ptb!=null) ptb.style.backgroundColor=this.category.maincolor;
+      },
+     isVisible : function(device,cat) {
+        var tmain = document.querySelector('#tmain');
+
+        if (device.category!=null && device.display!=null) {
+          return (device.category[cat]=='1');
+        } else
+          return false;
+      },
+      isFavorite : function() {
+          //return ((device.display.parameters.favorite=='true' && favorite || (!favorite)));
+          return false;  
+      }
+  });
+
+</script>
