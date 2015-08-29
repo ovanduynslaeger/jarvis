@@ -41,11 +41,11 @@
       <paper-fab class="image" src="{{control.display.parameters.icon}}" on-tap="handleClick" hidden="{{!isImageButton(control.display.parameters.style)}}"/>
     </template>  
     <template is="dom-if" if="{{isColor(control.display.parameters.style)}}">
-      <input id="{{control.id}}" type="color" hidden="{{!isColor(control.display.parameters.style)}}"/>
+      <input id="{{control.id}}" type="color" hidden="{{!isColor(control.display.parameters.style)}}" on-change="handleColor"/>
     </template>  
     <template is="dom-if" if="{{isSlide(control.display.parameters.style)}}">
       <div class="slider layout horizontal"/>
-       <paper-fab icon="{{control.display.parameters.icon}}" on-tap="handleClick"></paper-fab>
+       <paper-fab icon="{{control.display.parameters.icon}}" on-tap="handleSlider"></paper-fab>
        <paper-slider id="{{control.id}}" pin snaps max="{{control.configuration.maxValue}}" step="{{control.display.parameters.step}}" value="{{control.display.parameters.defaultValue}}"></paper-slider>
       </div>
     </template>  
@@ -70,6 +70,13 @@
       },
       handleClick: function() {
         sendURL('/api/jeedom/cmd/'+this.control.id);
+      },
+      handleColor: function(e) {
+        sendURL('/api/jeedom/cmd/'+this.control.id+"/color/"+e.target.value.substring(1));
+      },
+      handleSlider: function() {
+        var slider = document.getElementById(this.control.id);
+        sendURL('/api/jeedom/cmd/'+this.control.id+"/slide/"+slider.value);
       },
       isReturnLine: function(line) {
         return (line=='1');
