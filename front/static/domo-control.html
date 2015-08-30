@@ -72,7 +72,7 @@
         sendURL('/api/jeedom/cmd/'+this.control.id);
       },
       handleColor: function(e) {
-        sendURL('/api/jeedom/cmd/'+this.control.id+"/color/"+e.target.value.substring(1));
+        sendURL('/api/jeedom/cmd/'+this.control.id+"/slide/"+e.target.value.substring(1));
       },
       handleSlider: function() {
         var slider = document.getElementById(this.control.id);

@@ -54,6 +54,7 @@ exports.runDeviceCommandSlide = function(req,res) {
 };
 
 
+/*
 exports.runDeviceCommandColor = function(req,res) {
     
     var id = req.params.id;
@@ -76,6 +77,7 @@ exports.runDeviceCommandColor = function(req,res) {
     });
  
 };
+*/
 
 
 exports.getDevices = function(cb) {

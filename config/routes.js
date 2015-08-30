@@ -22,7 +22,7 @@ module.exports = function (app) {
 
     app.get('/api/jeedom/cmd/:id/slide/:slider', api_ctrl.runDeviceCommandSlide);
 
-    app.get('/api/jeedom/cmd/:id/color/:color', api_ctrl.runDeviceCommandColor);
+//    app.get('/api/jeedom/cmd/:id/color/:color', api_ctrl.runDeviceCommandColor);
 
 
 
