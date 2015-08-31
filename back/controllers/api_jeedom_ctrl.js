@@ -35,7 +35,7 @@ exports.runDeviceCommandSlide = function(req,res) {
     var id = req.params.id;
     var slider = req.params.slider;
 
-    var url = 'http://localhost/jeedom/core/api/jeeApi.php?request={"jsonrpc":"2.0","method":"cmd::execCmd","params":{"apikey":"'+jeedomApikey+'","id": '+id+', "options":{"slider": '+slider+'}}}';
+    var url = 'http://localhost/jeedom/core/api/jeeApi.php?request={"jsonrpc":"2.0","method":"cmd::execCmd","params":{"apikey":"'+jeedomApikey+'","id": '+id+', "options":{"slider": "'+slider+'"}}}';
     request({
       uri: url,
       method: "GET",

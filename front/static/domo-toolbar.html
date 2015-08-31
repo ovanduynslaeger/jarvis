@@ -18,7 +18,7 @@
    <div class="flex title">Jarvis</div>
    <!-- <paper-icon-button icon="star" on-tap="toggleFavorite"></paper-icon-button> -->
    <template is="dom-if" if="{{selected}}">
-      <paper-icon-button icon="arrow-back" on-tap="back"></paper-icon-button>
+     <paper-icon-button icon="arrow-back" on-tap="back"></paper-icon-button>
    </template>        
   </template>
 
@@ -30,13 +30,12 @@
                   type: Number,
                   value: 0
                 }
-/*                ,
+                ,
                 favorite: {
-                  type: Boolean,
-                  notify: true
+                  type: Boolean
                 }
-*/                },
-/*    toggleFavorite: function(e) {
+                },
+    toggleFavorite: function(e) {
       var target = e.target;
       if (favorite) {
           target.icon="star";
@@ -45,7 +44,6 @@
       }
       favorite=!favorite;
     },
-    */
     back: function() {
       var tmain = document.getElementById('tmain');
       tmain.selected = 0;

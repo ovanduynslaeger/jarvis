@@ -63,13 +63,13 @@ body(unresolved,class="layout horizontal wrap fullbleed")
     domo-menu(menu="Menu")
    paper-header-panel(main,mode="waterfall")
     paper-toolbar(id="toolbar")
-     domo-toolbar(id="domo-bar",class="layout horizontal flex",selected="[[selected]]")
+     domo-toolbar(id="domo-bar",class="layout horizontal flex",selected="[[selected]]",favorite="{{favorite}}")
     neon-animated-pages(id="pages",selected="[[selected]]",entry-animation="scale-up-animation",exit-animation="scale-down-animation")
      div(class="horizontal wrap layout")
-      template(is="dom-repeat",items="{{items}}",as="category")
+      template(is="dom-repeat",items="[[items]]",as="category")
        domo-category(level="{{category.level}}",bgc="{{category.secondcolor}}",img="{{category.photo}}",style="width: 49.8%")
-     template(is="dom-repeat",items="{{items}}",as="category")
-      domo-page(category="{{category}}",devices="{{devices}}",selected="[[selected]]")
+     template(is="dom-repeat",items="[[items]]",as="category")
+      domo-page(category="{{category}}",devices="[[devices]]",selected="[[selected]]",favorite="{{favorite}}")
         
   nav-dialog
   help-dialog
@@ -77,7 +77,7 @@ body(unresolved,class="layout horizontal wrap fullbleed")
  script.
     var tmain = document.querySelector('#tmain');
     tmain.selected = 0;
-    //favorite=true;
+    favorite=true;
 
     var items = [];
     for (var cat in !{categories}) {

@@ -20,7 +20,7 @@
           <div class="view horizontal wrap center-justified layout">
            <template is="dom-repeat" items="{{devices}}" as="device">
             <template is="dom-if" if="{{isVisible(device,category.jeedomcategory)}}">
-             <domo-device hidden$="{{fav}}" device="{{device}}" bgc="{{category.secondcolor}}"></domo-device device>
+             <domo-device hidden$="{{!favorite}}" device="{{device}}" bgc="{{category.secondcolor}}"></domo-device device>
             </template>
            </template>
           </div>
@@ -40,9 +40,8 @@
         category: Object,
         devices: Array,
         selected: Number,
-        fav: {
+        favorite: {
           type: Boolean,
-          computed: 'isFavorite()'
         }
       },
      ready: function() {
@@ -56,10 +55,6 @@
           return (device.category[cat]=='1');
         } else
           return false;
-      },
-      isFavorite : function() {
-          //return ((device.display.parameters.favorite=='true' && favorite || (!favorite)));
-          return false;  
       }
   });
 
