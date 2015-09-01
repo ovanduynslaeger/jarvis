@@ -41,7 +41,7 @@
       <paper-fab class="image" src="{{control.display.parameters.icon}}" on-tap="handleClick" hidden="{{!isImageButton(control.display.parameters.style)}}"/>
     </template>  
     <template is="dom-if" if="{{isColor(control.display.parameters.style)}}">
-      <input id="{{control.id}}" type="color" hidden="{{!isColor(control.display.parameters.style)}}" on-change="handleColor"/>
+      <input id="{{control.id}}" type="color" hidden="{{!isColor(control.display.parameters.style)}}" value="{{control.display.parameters.defaultValue}}" on-change="handleColor"/>
     </template>  
     <template is="dom-if" if="{{isSlide(control.display.parameters.style)}}">
       <div class="slider layout horizontal"/>
