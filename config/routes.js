@@ -12,6 +12,8 @@ module.exports = function (app) {
 
 	app.get('/', ui_ctrl.index);
 
+	app.get('/macro', ui_ctrl.macro);
+
 //	app.get('/param', ui_ctrl.param);
 
 //	app.get('/test', ui_ctrl.test);

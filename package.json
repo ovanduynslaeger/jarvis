@@ -2,7 +2,7 @@
   "name": "jarvis",
   "description": "Automation project",
   "author": "Olivier Vanduynslaeger <o.vanduynslaeger@gmail.com>",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "dependencies": {
     "connect": "1.8.5",
     "express": "2.5.2",

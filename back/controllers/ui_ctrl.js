@@ -6,6 +6,23 @@ exports.index = function (req, res) {
     init(req,res);
 };
 
+
+exports.macro = function (req, res) {
+    var cb = function (req,res) {
+        res.render('macro.jade', {
+            locals : {
+                title : 'Jarvis'
+                ,description: 'Home'
+                ,author: 'Olivier Vanduynslaeger'
+                ,analyticssiteid: 'XXXXXXX'
+                ,categories: JSON.stringify(req.session.categories)
+                ,devices: JSON.stringify(req.session.devices)
+            }
+        });
+    };
+
+    getDatas(req,res,cb);    };
+
 /*
 exports.clearcache = function (req, res) {
     req.session.destroy;
