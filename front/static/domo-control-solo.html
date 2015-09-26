@@ -1,0 +1,55 @@
+<dom-module id="domo-control-solo">
+  
+  <style>
+
+    #solo {
+      position: relative;
+      font-size: 50px;
+      cursor: default;
+      margin-top: 50%;
+      padding: 20px;
+    }
+    
+   img {
+      width: 100%;
+      height: 100%;
+    }
+    
+    .circle {
+      border-radius: 50%;
+      width: 200px;
+      height: 200px;
+      
+    }
+
+
+  </style>   
+
+  <template>
+    <neon-animatable>
+    <div id="solo" class="circle" on-tap="handleClick">
+        <img src="{{control.display.parameters.photo}}"><paper-ripple center></paper-ripple></img>
+     </div> 
+    </neon-animatable>
+  </template>
+  
+  <script>
+    Polymer({
+      is: "domo-control-solo",
+      properties: {
+                control: Object,
+                img: String
+                },
+      ready: function() {
+        this.querySelector('#solo').style.backgroundColor=this.control.display.parameters.backgroundcolor;
+        //this.querySelector('#solo').style.backgroundColor="#B40404";
+      },
+      handleClick: function() {
+        sendURL('/api/jeedom/cmd/'+this.control.id);
+      }
+      
+
+    });  
+  </script>
+  
+</dom-module>

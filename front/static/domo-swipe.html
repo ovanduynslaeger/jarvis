@@ -1,0 +1,54 @@
+<dom-module id="domo-swipe">
+  <style>
+    #swipe {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+  <template>
+    <div id="swipe" on-track="handleTrack"><content></content></div>
+  </template>
+  <script>
+    Polymer({
+      is: 'domo-swipe',
+      properties: { 
+          start: Number,
+          end: Number,
+          max: Number
+      },
+      handleTrack: function(e) {
+        switch(e.detail.state) {
+          case 'start':
+            this.start = e.detail.x;
+            break;
+          case 'track':
+            break;
+          case 'end':
+            this.end = e.detail.x;
+            var minDelta = 10 * window.screen.availWidth / 100;
+            var delta = this.end - this.start;
+            if (delta<0) {
+                delta=delta*-1;
+                var maxX = 60 * window.screen.availWidth / 100;
+                if ((this.start > maxX) && (minDelta < delta)) {
+                    var tmain = document.querySelector('#tmain');
+                      tmain.entryAnimation = 'slide-from-right-animation';
+                      tmain.exitAnimation = 'slide-left-animation';
+                      if (tmain.selected != (this.max-1)) tmain.selected =(tmain.selected + 1);
+                }
+            } else {
+                var minX = 40 * window.screen.availWidth / 100;
+                if ((this.start < minX) && (minDelta < delta)) {
+                    var tmain = document.querySelector('#tmain');
+                      tmain.entryAnimation = 'slide-from-left-animation';
+                      tmain.exitAnimation = 'slide-right-animation';
+                      tmain.selected = tmain.selected === 0 ? tmain.selected : (tmain.selected - 1);
+                }
+                
+            }
+            break;
+        }
+      }
+    });
+  </script>
+</dom-module>
