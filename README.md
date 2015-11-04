@@ -14,3 +14,4 @@ Domotic interface (Materiel Design)
 * 2.0.8 Add color style
 * 3.0.0 Polymer 1.0.0
 * 3.1.0 Polymer 1.0.0
+* 3.1.1 Polymer 1.2.1
