@@ -54,15 +54,19 @@
           </template>
         </template>              
       </paper-toolbar>
-      <div class="domo-device-actions horizontal around-justified layout wrap">
+      <div class="domo-device-actions">
+      <!-- <div class="domo-device-actions horizontal around-justified layout wrap"> -->
         <template is="dom-if" if="{{manyControl}}">
-          <iron-collapse id="collapse">
+          <iron-collapse id="collapse" class="horizontal layout wrap">
             <template is="dom-repeat" items="{{device.cmds}}" as="control">
-             <domo-control control="{{control}}" bgc="{{bgc}}"/>
+             <domo-control control="{{control}}" bgc="{{bgc}}"></domo-control>
+              <template is="dom-if" if="{{isReturnLine(control.display.forceReturnLineAfter)}}">
+                <div style="flex-basis: 100%"></div>
+              </template>
             </template>
           </iron-collapse>
         </template>              
-      </div>
+      <!-- </div> -->
   </template>    
 
   <script>
@@ -95,6 +99,9 @@
              }
          }
          return nb > 2;
+      },
+      isReturnLine: function(line) {
+        return (line=='1');
       },
       toggleDialogNav: function() {
          var node = document.querySelector('nav-dialog');

@@ -8,6 +8,8 @@
     paper-icon-button {
         padding: 0px;
         margin-right: 12px;
+        width: 32px;
+        height: 32px;
     }
     
     
@@ -16,7 +18,7 @@
   <template>
    <paper-icon-button icon="menu" on-tap="toggleHeaderPanel"></paper-icon-button>
    <div class="flex title">Jarvis</div>
-   <!-- <paper-icon-button icon="star" on-tap="toggleFavorite"></paper-icon-button> -->
+   <paper-icon-button icon="star" on-tap="toggleFavorite"></paper-icon-button>
    <template is="dom-if" if="{{selected}}">
      <paper-icon-button icon="arrow-back" on-tap="back"></paper-icon-button>
    </template>        
@@ -30,19 +32,17 @@
                   type: Number,
                   value: 0
                 }
-                ,
-                favorite: {
-                  type: Boolean
-                }
                 },
     toggleFavorite: function(e) {
       var target = e.target;
-      if (favorite) {
-          target.icon="star";
-      } else {
+      var tmain = document.getElementById('tmain');
+      if (tmain.devices.myfav) {
           target.icon="star-border";
+      } else {
+          target.icon="star";
       }
-      favorite=!favorite;
+      tmain.set("devices.myfav",!tmain.devices.myfav);
+      //tmain.devices.myfav=!tmain.devices.myfav;
     },
     back: function() {
       var tmain = document.getElementById('tmain');

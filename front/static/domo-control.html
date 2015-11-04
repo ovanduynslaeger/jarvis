@@ -28,9 +28,6 @@
     </style>
 
   <template hidden="{{!isVisible(control.isVisible)}}">
-    <template is="dom-if" if="{{isReturnLine(control.display.forceReturnLineBefore)}}">
-      <div class="layout horizontal center-justified"/>
-    </template>
     <template is="dom-if" if="{{isButtonMini(control.display.parameters.style)}}">
       <paper-fab icon="{{control.display.parameters.icon}}" mini on-tap="handleClick"/>
     </template>  
@@ -49,9 +46,6 @@
        <paper-slider id="{{control.id}}" pin snaps max="{{control.configuration.maxValue}}" step="{{control.display.parameters.step}}" value="{{control.display.parameters.defaultValue}}"></paper-slider>
       </div>
     </template>  
-    <template is="dom-if" if="{{isReturnLine(control.display.forceReturnLineAfter)}}">
-      <div class="layout horizontal center-justified"/>
-    </template>
   </template>
 
 
