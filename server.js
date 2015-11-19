@@ -1,6 +1,3 @@
-//setup Dependencies
-var Devices = require('./back/models/devices');
-
 var connect = require('connect')
     , express = require('express')
     , io = require('socket.io')

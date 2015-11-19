@@ -8,7 +8,7 @@ exports.index = function (req, res) {
 
 
 exports.macro = function (req, res) {
-    var cb = function (req,res) {
+    var cb = function () {
         res.render('macro.jade', {
             locals : {
                 title : 'Jarvis'
@@ -21,7 +21,9 @@ exports.macro = function (req, res) {
         });
     };
 
-    getDatas(req,res,cb);    };
+    getDatas(req,res,cb);   
+    
+};
 
 /*
 exports.clearcache = function (req, res) {
@@ -63,16 +65,14 @@ exports.test = function (req, res) {
 */
 
 function init(req,res) {
-    var cb = function (req,res) {
+    var cb = function () {
         res.render('index.jade', {
-            locals : {
                 title : 'Jarvis'
                 ,description: 'Home'
                 ,author: 'Olivier Vanduynslaeger'
                 ,analyticssiteid: 'XXXXXXX'
                 ,categories: JSON.stringify(req.session.categories)
                 ,devices: JSON.stringify(req.session.devices)
-            }
         });
     };
 
@@ -146,7 +146,7 @@ function getDatas(req,res,cb) {
             if (err) {
                 console.log("ERROR "+ err);
             }
-            cb(req,res,cb);
+            cb();
         });    
     
 }

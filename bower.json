@@ -39,6 +39,7 @@
     "iron-collapse": "PolymerElements/iron-collapse#~1.0.2",
     "iron-dropdown": "PolymerElements/iron-dropdown#~1.0.3",
     "neon-animation": "PolymerElements/neon-animation#~1.0.6",
-    "iron-flex-layout": "PolymerElements/iron-flex-layout#~1.0.2"
+    "iron-flex-layout": "PolymerElements/iron-flex-layout#~1.0.2",
+    "paper-toast": "PolymerElements/paper-toast#~1.0.0"
   }
 }

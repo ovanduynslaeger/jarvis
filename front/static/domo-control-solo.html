@@ -19,7 +19,10 @@
       border-radius: 50%;
       width: 200px;
       height: 200px;
-      
+    }
+    
+    paper-toast {
+      background: #526E9C;
     }
 
 
@@ -27,8 +30,9 @@
 
   <template>
     <neon-animatable>
-    <div id="solo" class="circle" on-tap="handleClick">
-        <img src="{{control.display.parameters.photo}}"><paper-ripple center></paper-ripple></img>
+     <div id="solo" class="circle" on-tap="handleClick">
+        <img src="{{control.display.parameters.photo}}"></img>
+        <paper-toast aria-hidden="true" duration="2000" id="toast" text="La commande est prise en compte."></paper-toast>
      </div> 
     </neon-animatable>
   </template>
@@ -45,6 +49,7 @@
         //this.querySelector('#solo').style.backgroundColor="#B40404";
       },
       handleClick: function() {
+        this.querySelector('#toast').show();
         sendURL('/api/jeedom/cmd/'+this.control.id);
       }
       
