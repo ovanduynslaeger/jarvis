@@ -1,0 +1,23 @@
+{
+    "apps" : [{
+        "name"        : "Jarvis",
+        "script"      : "/home/pi/jarvis/server.js",
+        "watch"       : true,
+        "out_file"   : "/var/log/jarvis.log",
+        "error_file" : "/var/log/jarvis.err",
+        "log_format" : ":date.color :level.blue :msg",
+        "env": {
+                "NODE_ENV": "production",
+                "PORT": "8555",
+                "APIKEY" : "",
+                "HTPC_UP" : "171",
+                "HTPC_LEFT" : "172",
+                "HTPC_DONE" : "173",
+                "HTPC_RIGHT" : "174",
+                "HTPC_DOWN" : "175",
+                "HTPC_BACK" : "235",
+                "HTPC_HOME" : "163",
+                "HTPC_MENU" : "236"              
+        }
+     }]
+}

@@ -6,6 +6,7 @@ var connect = require('connect')
 
 //Setup Express
 var server = express.createServer();
+/*
 server.configure(function(){
     server.set('views', __dirname + '/front/views');
     server.set('view options', { layout: false });
@@ -17,7 +18,16 @@ server.configure(function(){
     server.use(connect.static(__dirname + '/'));
     server.use(server.router);
 });
+*/
 
+server.use(express.session({ secret: "shhhhhhhhh!"}));
+server.set('views', __dirname + '/front/views');
+server.set('view options', { layout: false });
+server.use(connect.bodyParser());
+server.use(express.favicon(__dirname + "/front/static/images/favicon.ico"));     
+server.use(connect.static(__dirname + '/'));
+require('automation-api')(server);
+ 
 require('./config/routes')(server);
 server.get('/*', function (req, res) {
     throw new NotFound();

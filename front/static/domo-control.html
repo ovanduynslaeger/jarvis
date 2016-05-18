@@ -24,6 +24,19 @@
         width: 250px;
         padding-left: 5px;
       }
+      
+      .colorCtrl {
+          float: left;
+          border-radius: 50%;
+          border: 14px solid DimGray;
+      }
+      
+      .inputColor {
+          opacity: 0;
+          display: block;
+          width: 26px;
+          height: 26px;
+      }      
     
     </style>
 
@@ -38,7 +51,9 @@
       <paper-fab class="image" src="{{control.display.parameters.icon}}" on-tap="handleClick" hidden="{{!isImageButton(control.display.parameters.style)}}"/>
     </template>  
     <template is="dom-if" if="{{isColor(control.display.parameters.style)}}">
-      <input id="{{control.id}}" type="color" hidden="{{!isColor(control.display.parameters.style)}}" value="{{control.display.parameters.defaultValue}}" on-change="handleColor"/>
+      <div id="color{{control.id}}" class="colorCtrl"> 
+         <input id="{{control.id}}" class="inputColor" type="color" hidden="{{!isColor(control.display.parameters.style)}}" value="{{control.display.parameters.defaultValue}}" on-change="handleColor"/>
+      </div>
     </template>  
     <template is="dom-if" if="{{isSlide(control.display.parameters.style)}}">
       <div class="slider layout horizontal"/>
@@ -66,6 +81,8 @@
         sendURL('/api/jeedom/cmd/'+this.control.id);
       },
       handleColor: function(e) {
+
+        $("#color"+e.target.id).css("background-color",e.target.value);
         sendURL('/api/jeedom/cmd/'+this.control.id+"/slide/"+e.target.value.substring(1));
       },
       handleSlider: function() {
