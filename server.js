@@ -20,13 +20,15 @@ server.configure(function(){
 });
 */
 
+server.use(express.cookieParser());
 server.use(express.session({ secret: "shhhhhhhhh!"}));
 server.set('views', __dirname + '/front/views');
 server.set('view options', { layout: false });
 server.use(connect.bodyParser());
 server.use(express.favicon(__dirname + "/front/static/images/favicon.ico"));     
 server.use(connect.static(__dirname + '/'));
-require('automation-api')(server);
+
+require('lirc-api')(server);
  
 require('./config/routes')(server);
 server.get('/*', function (req, res) {
