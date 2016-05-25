@@ -8,24 +8,19 @@
         height: 87vh;
     }
 
-}
-
   </style>
-
 
     <template>
         <neon-animatable>
          <section id="catsection" class="vertical layout">
           <div class="view horizontal wrap center-justified layout">
            <template id="tdevices" is="dom-repeat" items="{{devices}}" filter="isVisible" observe="myfav" as="device">
-            <!-- <template is="dom-if" if="{{isVisible(device,category.jeedomcategory)}}"> -->
              <domo-device device="{{device}}" bgc="{{category.secondcolor}}"></domo-device device>
-            <!-- </template> -->
            </template>
           </div>
          </section>
         </neon-animatable>
-     </template>
+    </template>
  
 
 </dom-module>

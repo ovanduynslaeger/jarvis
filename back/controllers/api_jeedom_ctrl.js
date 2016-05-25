@@ -8,9 +8,9 @@ exports.runDeviceCommand = function(req,res) {
     
     var url="";
     if (isNaN(id)) {
-      url = 'http://localhost/jeedom/core/api/jeeApi.php?request={"jsonrpc":"2.0","id":1,"method":"cmd::execCmd","params":{"apikey":"'+jeedomApikey+'","id": '+eval('process.env.'+id)+'}}';
+      url = 'http://localhost/core/api/jeeApi.php?request={"jsonrpc":"2.0","id":1,"method":"cmd::execCmd","params":{"apikey":"'+jeedomApikey+'","id": '+eval('process.env.'+id)+'}}';
     } else {
-      url = 'http://localhost/jeedom/core/api/jeeApi.php?request={"jsonrpc":"2.0","id":1,"method":"cmd::execCmd","params":{"apikey":"'+jeedomApikey+'","id": '+id+'}}';
+      url = 'http://localhost/core/api/jeeApi.php?request={"jsonrpc":"2.0","id":1,"method":"cmd::execCmd","params":{"apikey":"'+jeedomApikey+'","id": '+id+'}}';
     }
     request({
       uri: url,
@@ -35,7 +35,7 @@ exports.runDeviceCommandSlide = function(req,res) {
     var id = req.params.id;
     var slider = req.params.slider;
 
-    var url = 'http://localhost/jeedom/core/api/jeeApi.php?request={"jsonrpc":"2.0","method":"cmd::execCmd","params":{"apikey":"'+jeedomApikey+'","id": '+id+', "options":{"slider": "'+slider+'"}}}';
+    var url = 'http://localhost/core/api/jeeApi.php?request={"jsonrpc":"2.0","method":"cmd::execCmd","params":{"apikey":"'+jeedomApikey+'","id": '+id+', "options":{"slider": "'+slider+'"}}}';
     request({
       uri: url,
       method: "GET",
@@ -60,7 +60,7 @@ exports.runDeviceCommandColor = function(req,res) {
     var id = req.params.id;
     var color = req.params.color;
 
-    var url = 'http://localhost/jeedom/core/api/jeeApi.php?request={"jsonrpc":"2.0","method":"cmd::execCmd","params":{"apikey":"'+jeedomApikey+'","id": '+id+', "options":{"color": '+color+'}}}';
+    var url = 'http://localhost/core/api/jeeApi.php?request={"jsonrpc":"2.0","method":"cmd::execCmd","params":{"apikey":"'+jeedomApikey+'","id": '+id+', "options":{"color": '+color+'}}}';
     request({
       uri: url,
       method: "GET",
@@ -82,7 +82,7 @@ exports.runDeviceCommandColor = function(req,res) {
 
 exports.getDevices = function(cb) {
     
-    var url = 'http://localhost/jeedom/core/api/myJeeApi.php?request={"jsonrpc":"2.0","method":"object::fullEq","params":{"apikey":"'+jeedomApikey+'"}}';
+    var url = 'http://localhost/core/api/myJeeApi.php?request={"jsonrpc":"2.0","method":"object::fullEq","params":{"apikey":"'+jeedomApikey+'"}}';
     request({
       uri: url,
       method: "GET",
