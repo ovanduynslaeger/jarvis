@@ -43,6 +43,10 @@
       }
       tmain.set("devices.myfav",!tmain.devices.myfav);
     },
+    ready: function() {
+      var tmain = document.querySelector('#tmain');
+      tmain.set("devices.myfav",true);
+    },
     back: function() {
       var tmain = document.getElementById('tmain');
       tmain.selected = 0;
