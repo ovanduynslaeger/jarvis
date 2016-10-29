@@ -37,7 +37,12 @@
           width: 26px;
           height: 26px;
       }      
-    
+
+    paper-toast {
+      background: #526E9C;
+    }
+
+
     </style>
 
   <template hidden="{{!isVisible(control.isVisible)}}">
@@ -60,7 +65,7 @@
        <paper-fab icon="{{control.display.parameters.icon}}" on-tap="handleSlider"></paper-fab>
        <paper-slider id="{{control.id}}" pin snaps max="{{control.configuration.maxValue}}" step="{{control.display.parameters.step}}" value="{{control.display.parameters.defaultValue}}"></paper-slider>
       </div>
-    </template>  
+    </template>
   </template>
 
 

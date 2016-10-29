@@ -17,7 +17,10 @@
                 "HTPC_DOWN" : "175",
                 "HTPC_BACK" : "235",
                 "HTPC_HOME" : "163",
-                "HTPC_MENU" : "236"              
+                "HTPC_MENU" : "236",
+                "HTPC_PAGEDOWN" : "257",
+                "HTPC_PAGEUP" : "256",
+                "HTPC_INFO" : "256"
         }
      }]
 }
