@@ -53,6 +53,8 @@
           <paper-fab mini icon="home" on-tap="_sendURLHTPC_HOME"></paper-fab>
           <paper-fab hidden/></paper-fab>
           <paper-fab mini icon="menu" on-tap="_sendURLHTPC_MENU"></paper-fab>
+          <paper-fab hidden/></paper-fab>
+          <paper-fab mini icon="info" on-tap="_sendURLHTPC_INFO"></paper-fab>
          </div>
         </div>
         <paper-icon-button icon="clear" on-tap="hide"></paper-icon-button>
@@ -108,6 +110,9 @@
     },
     _sendURLHTPC_MENU: function() {
       sendURL('/api/jeedom/cmd/HTPC_MENU');
+    },
+    _sendURLHTPC_INFO: function() {
+      sendURL('/api/jeedom/cmd/HTPC_INFO');
     },
     
     show: function() {
