@@ -10,6 +10,7 @@
       font-size: 1.2rem;
     }
     .domo-device-actions {
+      background-color: rgba(100, 100, 100, 0);
       background-color: white;
       padding-left: 8px;
     }
@@ -19,7 +20,15 @@
       margin-top: 0.5em;
       margin-bottom: 0.5em;
     }
+    
     .domo-device-actions-menu paper-fab {
+      background-color: rgba(100, 100, 100, 0);
+      margin-right: 0.5em;
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+    }
+
+    .domo-device-actions-menu ::content domo-control paper-fab {
       background-color: rgba(100, 100, 100, 0);
       margin-right: 0.5em;
       margin-top: 0.5em;
@@ -50,7 +59,9 @@
        </template>
         <template is="dom-if" if="{{!manyControl}}">
           <template is="dom-repeat" items="{{device.cmds}}" as="control">
-           <domo-control control="{{control}}" bgc="{{bgc}}" mini="true"/>
+           <div class="domo-device-actions-menu">
+             <domo-control control="{{control}}" bgc="{{bgc}}" mini="true"/>
+           </div>
           </template>
         </template>              
       </paper-toolbar>
