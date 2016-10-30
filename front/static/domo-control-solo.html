@@ -27,9 +27,9 @@
 
   <template>
     <neon-animatable>
-     <div id="solo{{control.id}}" class="circle" on-tap="handleClick">
+     <div id="solo" class="circle" on-tap="handleClick">
         <img src="{{control.display.parameters.photo}}"></img>
-        <paper-toast aria-hidden="true" duration="3000" id="toast{{control.id}}" text="La commande est prise en compte."></paper-toast>
+        <paper-toast aria-hidden="true" duration="3000" id="toast" text="La commande est prise en compte."></paper-toast>
      </div> 
     </neon-animatable>
   </template>
@@ -41,7 +41,7 @@
                 control: Object
                 },
       ready: function() {
-        this.querySelector('#solo'+this.control.id).style.backgroundColor=this.control.display.parameters.backgroundcolor;
+        this.querySelector('#solo').style.backgroundColor=this.control.display.parameters.backgroundcolor;
       },
       handleClick: function() {
         this.querySelector('#toast').show();
